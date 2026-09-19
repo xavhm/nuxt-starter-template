@@ -1,0 +1,12 @@
+{
+  "version": 1,
+  "skills": {
+    "nuxt-ui": {
+      "source": "ui.nuxt.com",
+      "sourceUrl": "https://ui.nuxt.com",
+      "sourceType": "well-known",
+      "computedHash": "9724d09a8196e9c991f7afe29a38837b52b9fff80e9c31c04920b5f520e9cf2b",
+      "wellKnownDigest": "sha256:dcc04e31b321273bc4069a1bc975285a9d7ecb0e51cbbdd6bfa83c32028e48f5"
+    }
+  }
+}

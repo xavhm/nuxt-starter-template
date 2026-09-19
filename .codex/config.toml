@@ -1,0 +1,7 @@
+# .codex/config.toml
+
+[mcp_servers.nuxt]
+url = "https://nuxt.com/mcp"
+
+[mcp_servers.nuxt-seo]
+url = "http://nuxtseo.com/mcp"
