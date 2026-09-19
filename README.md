@@ -1,12 +1,50 @@
-# Homepage v3
+# Agentic Nuxt Starter Template
 
-[![Vite+](https://img.shields.io/badge/toolchain-Vite%2B-8B5CF6)](https://viteplus.dev/guide/)
+[![Use this template](https://img.shields.io/badge/GitHub-Use_this_template-181717?logo=github)](https://github.com/xavhm/homepage-v3/generate)
+[![Vite+](https://img.shields.io/badge/toolchain-Vite%2B-8B5CF6)](https://viteplus.dev/)
 [![Nuxt](https://img.shields.io/badge/Nuxt-4-00DC82?logo=nuxt.js&logoColor=white)](https://nuxt.com/)
-[![TypeScript](https://img.shields.io/badge/TypeScript-6-3178C6?logo=typescript&logoColor=white)](https://www.typescriptlang.org/)
+[![TypeScript](https://img.shields.io/badge/TypeScript-ready-3178C6?logo=typescript&logoColor=white)](https://www.typescriptlang.org/)
 [![License: MIT](https://img.shields.io/badge/license-MIT-blue.svg)](./LICENSE)
 
-Personal homepage, built with Nuxt, Nuxt UI, TypeScript, and Tailwind CSS.
-The repository uses [Vite+](https://viteplus.dev/guide/) and its `vp` CLI as the entry point for dependency management and development tasks.
+An agentic-ready Nuxt starter template for building modern, secure, content-driven applications with AI coding agents.
+
+The repository provides a consistent Vite+ workflow, project-level agent instructions, and a practical collection of Nuxt modules. It is also available as a GitHub template, so you can create a new repository without preserving this project's Git history.
+
+## Included modules
+
+| Module | Purpose |
+| --- | --- |
+| [Nuxt UI](https://ui.nuxt.com/) | Accessible Vue components and Tailwind CSS theming |
+| [Nuxt Content](https://content.nuxt.com/) | File-based content management for Markdown, YAML, JSON, and CSV |
+| [Nuxt SEO](https://nuxtseo.com/) | SEO utilities, sitemaps, robots configuration, and structured data |
+| [Nuxt Security](https://nuxt-security.vercel.app/) | Security headers, middleware, rate limiting, and request protection |
+| [Nuxt Hints](https://nuxt.com/modules/hints) | Development-time feedback for performance, accessibility, and best practices |
+
+## Agentic-ready development
+
+The repository is structured to work effectively with AI coding agents:
+
+- Project instructions are documented in `AGENTS.md`.
+- Nuxt and modules MCPs are detailled in the project.
+- Development commands use the consistent `vp` CLI.
+- Linting, formatting, type-checking, and testing are part of the expected workflow.
+- Nuxt UI guidance is available to agents working on the interface.
+- Dependencies and framework conventions are explicitly documented.
+
+Agents should read `AGENTS.md` before making changes.
+
+## Use this template
+
+Select **Use this template** on GitHub or open the following link:
+
+[Create a repository from this template](https://github.com/xavhm/homepage-v3/generate)
+
+Then clone your new repository:
+
+```bash
+git clone git@github.com:<username>/<repository>.git
+cd <repository>
+```
 
 ## Prerequisites
 
