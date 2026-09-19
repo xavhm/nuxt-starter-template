@@ -26,5 +26,6 @@ release. Add a tool name to select part of the graph. For example, run
 
 ## Documentation
 
+- 'Nuxt Content' module documentation is available at [https://content.nuxt.com/llms.txt](https://content.nuxt.com/llms.txt)
 - 'Nuxt Security' module documentation is available at [https://nuxt-security.vercel.app/getting-started/configuration](https://nuxt-security.vercel.app/getting-started/configuration)
 <!--VITE PLUS END-->
