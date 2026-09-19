@@ -3,7 +3,7 @@ export default defineNuxtConfig({
   modules: [
     '@nuxt/eslint',
     '@nuxt/ui',
-    '@nuxt/content',
+    '@nuxt/content', // use better-sqlite3 as dependancy
     '@nuxt/hints',
     '@nuxtjs/seo',
     'nuxt-security'
