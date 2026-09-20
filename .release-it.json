@@ -40,7 +40,8 @@
           },
           {
             "type": "chore",
-            "effect": "hidden"
+            "section": "Project Maintenance",
+            "effect": "bump"
           }
         ]
       }
