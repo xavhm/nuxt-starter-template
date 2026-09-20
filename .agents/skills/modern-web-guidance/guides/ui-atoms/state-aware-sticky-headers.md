@@ -108,36 +108,36 @@ If the visual transformation is absolutely critical to the design (e.g., the stu
 ```javascript
 function getScrollParent(node) {
   if (node == null || node === document.body || node === document.documentElement) {
-    return null; // default to viewport
+    return null // default to viewport
   }
   if (node.scrollHeight > node.clientHeight || node.scrollWidth > node.clientWidth) {
-    const overflow = getComputedStyle(node).overflow;
-    if (overflow !== "visible" && overflow !== "clip") {
-      return node;
+    const overflow = getComputedStyle(node).overflow
+    if (overflow !== 'visible' && overflow !== 'clip') {
+      return node
     }
   }
-  return getScrollParent(node.parentNode);
+  return getScrollParent(node.parentNode)
 }
 
-document.querySelectorAll(".sticky-container").forEach((container) => {
-  const root = getScrollParent(container);
+document.querySelectorAll('.sticky-container').forEach((container) => {
+  const root = getScrollParent(container)
 
-  const topOffset = parseFloat(getComputedStyle(container).top) || 0;
+  const topOffset = parseFloat(getComputedStyle(container).top) || 0
 
   const observer = new IntersectionObserver(
     ([e]) => {
       // Toggle the fallback class on the sticky header container
-      e.target.classList.toggle("is-stuck", e.intersectionRatio < 1);
+      e.target.classList.toggle('is-stuck', e.intersectionRatio < 1)
     },
     {
       root: root,
       threshold: [1],
       rootMargin: `-${topOffset + 1}px 0px 0px 0px`,
     },
-  );
+  )
 
-  observer.observe(container);
-});
+  observer.observe(container)
+})
 ```
 
 _Note: This generic IntersectionObserver pattern can also be used as a polyfill for the `scroll-state(scrollable)` query._

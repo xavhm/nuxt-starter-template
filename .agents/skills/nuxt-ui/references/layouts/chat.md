@@ -30,8 +30,8 @@ pnpm add ai @ai-sdk/gateway @ai-sdk/vue @comark/vue
 
 ```ts [nuxt.config.ts]
 export default defineNuxtConfig({
-  modules: ["@nuxt/ui", "@comark/nuxt"],
-});
+  modules: ['@nuxt/ui', '@comark/nuxt'],
+})
 ```
 
 **Vue (Vite):** No module registration needed, import directly from `@comark/vue`.
@@ -62,21 +62,21 @@ import {
   convertToModelMessages,
   toUIMessageStream,
   createUIMessageStreamResponse,
-} from "ai";
-import { gateway } from "@ai-sdk/gateway";
+} from 'ai'
+import { gateway } from '@ai-sdk/gateway'
 
 export default defineEventHandler(async (event) => {
-  const { messages } = await readBody(event);
+  const { messages } = await readBody(event)
 
   const result = streamText({
-    model: gateway("anthropic/claude-sonnet-5"),
-    instructions: "You are a helpful assistant.",
+    model: gateway('anthropic/claude-sonnet-5'),
+    instructions: 'You are a helpful assistant.',
     messages: await convertToModelMessages(messages),
-  });
+  })
 
-  const stream = toUIMessageStream({ stream: result.stream });
-  return createUIMessageStreamResponse({ stream });
-});
+  const stream = toUIMessageStream({ stream: result.stream })
+  return createUIMessageStreamResponse({ stream })
+})
 ```
 
 Or with a direct provider (e.g., `pnpm add @ai-sdk/openai`):
@@ -87,21 +87,21 @@ import {
   convertToModelMessages,
   toUIMessageStream,
   createUIMessageStreamResponse,
-} from "ai";
-import { openai } from "@ai-sdk/openai";
+} from 'ai'
+import { openai } from '@ai-sdk/openai'
 
 export default defineEventHandler(async (event) => {
-  const { messages } = await readBody(event);
+  const { messages } = await readBody(event)
 
   const result = streamText({
-    model: openai("gpt-5-nano"),
-    instructions: "You are a helpful assistant.",
+    model: openai('gpt-5-nano'),
+    instructions: 'You are a helpful assistant.',
     messages: await convertToModelMessages(messages),
-  });
+  })
 
-  const stream = toUIMessageStream({ stream: result.stream });
-  return createUIMessageStreamResponse({ stream });
-});
+  const stream = toUIMessageStream({ stream: result.stream })
+  return createUIMessageStreamResponse({ stream })
+})
 ```
 
 ## Component tree
@@ -120,25 +120,25 @@ UDashboardPanel
 
 ```vue [pages/chat/[id].vue]
 <script setup lang="ts">
-import { isReasoningUIPart, isTextUIPart, isToolUIPart, getToolName } from "ai";
-import { useChat } from "@ai-sdk/vue";
-import { isPartStreaming, isToolStreaming } from "@nuxt/ui/utils/ai";
-import highlight from "@comark/nuxt/plugins/highlight";
+import { isReasoningUIPart, isTextUIPart, isToolUIPart, getToolName } from 'ai'
+import { useChat } from '@ai-sdk/vue'
+import { isPartStreaming, isToolStreaming } from '@nuxt/ui/utils/ai'
+import highlight from '@comark/nuxt/plugins/highlight'
 
-definePageMeta({ layout: "dashboard" });
+definePageMeta({ layout: 'dashboard' })
 
-const input = ref("");
+const input = ref('')
 
 const { messages, status, error, sendMessage, stop, regenerate } = useChat({
   onError(error) {
-    console.error(error);
+    console.error(error)
   },
-});
+})
 
 function onSubmit() {
-  if (!input.value.trim()) return;
-  sendMessage({ text: input.value });
-  input.value = "";
+  if (!input.value.trim()) return
+  sendMessage({ text: input.value })
+  input.value = ''
 }
 </script>
 

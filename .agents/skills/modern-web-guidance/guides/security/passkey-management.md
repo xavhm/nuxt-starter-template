@@ -12,32 +12,32 @@ Your backend database layer and endpoints MUST support common CRUD actions for r
 
 ```javascript
 // Node.js routing example for credential CRUD
-router.get("/api/credentials", checkUserAuthenticated, async (req, res) => {
-  const list = await db.findCredentialsByUserId(req.user.id);
-  return res.json(list);
-});
+router.get('/api/credentials', checkUserAuthenticated, async (req, res) => {
+  const list = await db.findCredentialsByUserId(req.user.id)
+  return res.json(list)
+})
 
-router.put("/api/credential/:id", checkUserAuthenticated, async (req, res) => {
-  const { id } = req.params;
-  const { name } = req.body;
-  const cred = await db.findCredentialById(id);
+router.put('/api/credential/:id', checkUserAuthenticated, async (req, res) => {
+  const { id } = req.params
+  const { name } = req.body
+  const cred = await db.findCredentialById(id)
   if (!cred || cred.passkeyUserId !== req.user.id) {
-    return res.status(404).json({ error: "Credential not found." });
+    return res.status(404).json({ error: 'Credential not found.' })
   }
-  cred.name = name;
-  await db.saveCredential(cred);
-  return res.json(cred);
-});
+  cred.name = name
+  await db.saveCredential(cred)
+  return res.json(cred)
+})
 
-router.delete("/api/credential/:id", checkUserAuthenticated, async (req, res) => {
-  const { id } = req.params;
-  const cred = await db.findCredentialById(id);
+router.delete('/api/credential/:id', checkUserAuthenticated, async (req, res) => {
+  const { id } = req.params
+  const cred = await db.findCredentialById(id)
   if (!cred || cred.passkeyUserId !== req.user.id) {
-    return res.status(404).json({ error: "Credential not found." });
+    return res.status(404).json({ error: 'Credential not found.' })
   }
-  await db.deleteCredential(id);
-  return res.json({ success: true });
-});
+  await db.deleteCredential(id)
+  return res.json({ success: true })
+})
 ```
 
 ## Client-Side Management UI
@@ -71,48 +71,48 @@ The Signal API lets the application communicate credential states to password ma
 
 ```javascript
 // Client-side management synchronization ES module
-import { listFetch, renameFetch, deleteFetch } from "./api.js";
+import { listFetch, renameFetch, deleteFetch } from './api.js'
 
 // Base64URL-encoded User ID string (illustration only)
-const base64UrlUserId = "M2YPl-KGnA8";
+const base64UrlUserId = 'M2YPl-KGnA8'
 
 async function syncAcceptedCredentials(currentCredentialsList) {
   try {
-    const credentialIds = currentCredentialsList.map((c) => c.id); // Map of Base64URL credential ID strings
+    const credentialIds = currentCredentialsList.map((c) => c.id) // Map of Base64URL credential ID strings
 
     await PublicKeyCredential.signalAllAcceptedCredentials({
       rpId, // RP ID must match the one defined on the server
       userId: base64UrlUserId, // User ID Base64URL-encoded string
       allAcceptedCredentialIds: credentialIds,
-    });
+    })
   } catch (e) {
-    console.error("SignalAllAcceptedCredentials sync failure:", e);
+    console.error('SignalAllAcceptedCredentials sync failure:', e)
   }
 }
 
 async function loadManagementPanel() {
-  const response = await listFetch();
-  const list = await response.json();
+  const response = await listFetch()
+  const list = await response.json()
 
-  renderUI(list);
+  renderUI(list)
   // Sync on page load
-  await syncAcceptedCredentials(list);
+  await syncAcceptedCredentials(list)
 }
 
 async function performDelete(credentialId) {
-  const response = await deleteFetch(credentialId);
+  const response = await deleteFetch(credentialId)
   if (response.ok) {
-    const updatedResponse = await listFetch();
-    const updatedList = await updatedResponse.json();
+    const updatedResponse = await listFetch()
+    const updatedList = await updatedResponse.json()
 
-    renderUI(updatedList);
+    renderUI(updatedList)
     // Sync after deletion
-    await syncAcceptedCredentials(updatedList);
+    await syncAcceptedCredentials(updatedList)
   }
 }
 
 async function performRename(rpId, userId, updatedName, updatedDisplayName) {
-  const response = await renameFetch({ name: updatedName, displayName: updatedDisplayName });
+  const response = await renameFetch({ name: updatedName, displayName: updatedDisplayName })
   if (response.ok) {
     try {
       await PublicKeyCredential.signalCurrentUserDetails({
@@ -120,9 +120,9 @@ async function performRename(rpId, userId, updatedName, updatedDisplayName) {
         userId, // Base64URL-encoded user ID
         name: updatedName, // Updated username
         displayName: updatedDisplayName, // Updated display name
-      });
+      })
     } catch (e) {
-      console.error("SignalCurrentUserDetails sync failure:", e);
+      console.error('SignalCurrentUserDetails sync failure:', e)
     }
   }
 }
@@ -161,21 +161,21 @@ After verifying a registration response, read the `aaguid` from the registration
 Before looking up the AAGUID in the registry, check if it equals `'00000000-0000-0000-0000-000000000000'`. If so, skip the registry lookup and set `name` to a fallback (e.g. device name from user-agent, or "Unknown passkey provider") and `providerIcon` to `undefined`. Only look up the registry for non-zeroed AAGUIDs.
 
 ```javascript
-import aaguids from "./aaguids.json" with { type: "json" };
+import aaguids from './aaguids.json' with { type: 'json' }
 
-const { aaguid } = registrationInfo;
-if (aaguid === "00000000-0000-0000-0000-000000000000") {
+const { aaguid } = registrationInfo
+if (aaguid === '00000000-0000-0000-0000-000000000000') {
   // use the device name as the passkey provider based on
   // the information derived from the user agent string,
   // or just say "Unknown passkey provider"
 } else {
-  const provider = aaguids[aaguid];
+  const provider = aaguids[aaguid]
   const credential = {
     // ...other fields
     aaguid,
-    name: provider?.name || "Unknown passkey provider",
+    name: provider?.name || 'Unknown passkey provider',
     providerIcon: provider?.icon_light,
-  };
+  }
 }
 ```
 
@@ -190,7 +190,7 @@ Always install 'webauthn-polyfills' and import it in the context.
 Consider as long as `PublicKeyCredential` is supported, `PublicKeyCredential.getClientCapabilities` is also supported.
 
 ```js
-import "webauthn-polyfills";
+import 'webauthn-polyfills'
 ```
 
 ### Signal API Synchronization Fallback
@@ -203,7 +203,7 @@ If the browser does not support `PublicKeyCredential.parseRequestOptionsFromJSON
 ```html
 <script type="module">
   if (!PublicKeyCredential.parseRequestOptionsFromJSON) {
-    await import("https://unpkg.com/webauthn-polyfills");
+    await import('https://unpkg.com/webauthn-polyfills')
   }
 </script>
 ```

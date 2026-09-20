@@ -1,26 +1,26 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
   modules: [
-    "@nuxt/ui",
-    "@nuxt/content", // use better-sqlite3 as dependancy
-    "@nuxt/hints",
-    "@nuxtjs/seo",
-    "nuxt-security",
+    '@nuxt/ui',
+    '@nuxt/content', // use better-sqlite3 as dependancy
+    '@nuxt/hints',
+    '@nuxtjs/seo',
+    'nuxt-security',
   ],
 
   devtools: {
     enabled: true,
   },
 
-  css: ["~/assets/css/main.css"],
+  css: ['~/assets/css/main.css'],
 
   content: {},
 
   routeRules: {
-    "/": { prerender: true },
+    '/': { prerender: true },
   },
 
-  compatibilityDate: "2026-06-30",
+  compatibilityDate: '2026-06-30',
 
   security: {},
-});
+})

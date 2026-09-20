@@ -112,24 +112,24 @@ If dynamic visibility is required, use an `IntersectionObserver` to toggle a cla
 ```
 
 ```javascript
-if (!CSS.supports("container-type", "scroll-state")) {
-  const sentinel = document.querySelector(".scroll-sentinel");
-  const scroller = document.querySelector(".scroller");
+if (!CSS.supports('container-type', 'scroll-state')) {
+  const sentinel = document.querySelector('.scroll-sentinel')
+  const scroller = document.querySelector('.scroller')
 
   const observer = new IntersectionObserver(
     (entries) => {
       entries.forEach((entry) => {
         // If the sentinel is NOT intersecting, it means the user has scrolled down
         if (!entry.isIntersecting) {
-          scroller.classList.add("scrolled");
+          scroller.classList.add('scrolled')
         } else {
-          scroller.classList.remove("scrolled");
+          scroller.classList.remove('scrolled')
         }
-      });
+      })
     },
     { root: scroller },
-  );
+  )
 
-  observer.observe(sentinel);
+  observer.observe(sentinel)
 }
 ```

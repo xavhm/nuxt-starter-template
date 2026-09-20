@@ -16,14 +16,14 @@ In the following case, the `popover` attribute polyfill is conditionally loaded 
 // Check if the feature is missing before doing work.
 // MANDATORY: Prefer checking HTMLElement.prototype over window or document
 // when checking for a global DOM attribute or property like popover.
-if (!("popover" in HTMLElement.prototype)) {
+if (!('popover' in HTMLElement.prototype)) {
   // Use top-level await to pause the execution of any module that imports this file
   // until the polyfill finishes downloading and executing.
-  await import("/path/to/popover-polyfill.js");
+  await import('/path/to/popover-polyfill.js')
 }
 
 // Export a marker if needed by your application
-export const polyfillLoaded = true;
+export const polyfillLoaded = true
 ```
 
 ```javascript
@@ -31,12 +31,12 @@ export const polyfillLoaded = true;
 
 // MANDATORY: Because conditionally-load-polyfill.js uses top-level await,
 // this import will block execution of main.js until the polyfill is ready.
-import "./conditionally-load-polyfill.js";
+import './conditionally-load-polyfill.js'
 
 // Now it is safe to use the feature (e.g., showing a popover)
-const myPopover = document.getElementById("my-popover");
+const myPopover = document.getElementById('my-popover')
 if (myPopover) {
-  myPopover.showPopover();
+  myPopover.showPopover()
 }
 ```
 
@@ -54,10 +54,10 @@ if (myPopover) {
 
 // INSTEAD, guarantee a single entry point:
 // Import the top-level await module ONCE at the very top of your application tree.
-import "./conditionally-load-polyfill.js";
+import './conditionally-load-polyfill.js'
 
 // Then import the rest of your application code, ensuring the await resolves first.
-import "./app.js";
+import './app.js'
 ```
 
 ### Fallback strategies

@@ -120,23 +120,23 @@ If the highlight is critical for the user experience, use `IntersectionObserver`
 
 ```javascript
 // Optional: detect support and apply a JS-based fallback
-if (!CSS.supports("container-type", "scroll-state")) {
+if (!CSS.supports('container-type', 'scroll-state')) {
   const observer = new IntersectionObserver(
     (entries) => {
       entries.forEach((entry) => {
         // Toggle a class based on intersection
-        entry.target.classList.toggle("is-snapped", entry.isIntersecting);
-      });
+        entry.target.classList.toggle('is-snapped', entry.isIntersecting)
+      })
     },
     {
-      root: document.querySelector(".carousel"),
+      root: document.querySelector('.carousel'),
       // Carousel item intersects if any part of the carousel item is in the middle 2% of the carousel.
-      rootMargin: "0px -49%",
+      rootMargin: '0px -49%',
     },
-  );
+  )
 
-  document.querySelectorAll(".carousel-item").forEach((item) => {
-    observer.observe(item);
-  });
+  document.querySelectorAll('.carousel-item').forEach((item) => {
+    observer.observe(item)
+  })
 }
 ```

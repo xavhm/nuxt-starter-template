@@ -11,15 +11,15 @@ When a page performs multiple simultaneous network requests, they often compete 
 
 ```javascript
 // Use high priority (default) for critical UI updates
-const criticalData = await fetch("/api/data");
+const criticalData = await fetch('/api/data')
 
 // Explicitly deprioritize background analytics
-fetch("/api/analytics", {
-  method: "POST",
+fetch('/api/analytics', {
+  method: 'POST',
   body: JSON.stringify(eventData),
   // Lower the priority to prevent network contention
-  priority: "low",
-});
+  priority: 'low',
+})
 ```
 
 ## Best practices

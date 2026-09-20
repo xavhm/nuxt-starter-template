@@ -6,27 +6,27 @@ Complete patterns for displaying and managing tabular data.
 
 ```vue
 <script setup lang="ts">
-import type { TableColumn } from "@nuxt/ui";
+import type { TableColumn } from '@nuxt/ui'
 
 const data = ref([
-  { name: "Alice", email: "alice@example.com", role: "Admin" },
-  { name: "Bob", email: "bob@example.com", role: "Editor" },
-]);
+  { name: 'Alice', email: 'alice@example.com', role: 'Admin' },
+  { name: 'Bob', email: 'bob@example.com', role: 'Editor' },
+])
 
 const columns: TableColumn<(typeof data.value)[number]>[] = [
   {
-    accessorKey: "name",
-    header: "Name",
+    accessorKey: 'name',
+    header: 'Name',
   },
   {
-    accessorKey: "email",
-    header: "Email",
+    accessorKey: 'email',
+    header: 'Email',
   },
   {
-    accessorKey: "role",
-    header: "Role",
+    accessorKey: 'role',
+    header: 'Role',
   },
-];
+]
 </script>
 
 <template>
@@ -38,32 +38,32 @@ const columns: TableColumn<(typeof data.value)[number]>[] = [
 
 ```vue
 <script setup lang="ts">
-import type { TableColumn } from "@nuxt/ui";
+import type { TableColumn } from '@nuxt/ui'
 
-const search = ref("");
-const roleFilter = ref("All");
+const search = ref('')
+const roleFilter = ref('All')
 
 const rows = ref([
-  { name: "Alice", email: "alice@example.com", role: "Admin", status: "Active" },
-  { name: "Bob", email: "bob@example.com", role: "Editor", status: "Inactive" },
-]);
+  { name: 'Alice', email: 'alice@example.com', role: 'Admin', status: 'Active' },
+  { name: 'Bob', email: 'bob@example.com', role: 'Editor', status: 'Inactive' },
+])
 
 const columns: TableColumn[] = [
-  { accessorKey: "name", header: "Name" },
-  { accessorKey: "email", header: "Email" },
-  { accessorKey: "role", header: "Role" },
-  { accessorKey: "status", header: "Status" },
-  { id: "actions" },
-];
+  { accessorKey: 'name', header: 'Name' },
+  { accessorKey: 'email', header: 'Email' },
+  { accessorKey: 'role', header: 'Role' },
+  { accessorKey: 'status', header: 'Status' },
+  { id: 'actions' },
+]
 
 const filteredRows = computed(() => {
   return rows.value.filter((row) => {
     const matchesSearch =
-      !search.value || row.name.toLowerCase().includes(search.value.toLowerCase());
-    const matchesRole = roleFilter.value === "All" || row.role === roleFilter.value;
-    return matchesSearch && matchesRole;
-  });
-});
+      !search.value || row.name.toLowerCase().includes(search.value.toLowerCase())
+    const matchesRole = roleFilter.value === 'All' || row.role === roleFilter.value
+    return matchesSearch && matchesRole
+  })
+})
 </script>
 
 <template>
@@ -120,8 +120,8 @@ Row selection uses TanStack Table's `rowSelection` state — a `Record<string, b
 
 ```vue
 <script setup lang="ts">
-const table = useTemplateRef("table");
-const rowSelection = ref<Record<string, boolean>>({});
+const table = useTemplateRef('table')
+const rowSelection = ref<Record<string, boolean>>({})
 </script>
 
 <template>
@@ -137,31 +137,31 @@ const rowSelection = ref<Record<string, boolean>>({});
 Add a checkbox column using the `h` function. Use tri-state `modelValue` (`true`, `false`, or `'indeterminate'`) for the "select all" header:
 
 ```ts
-import { h } from "vue";
+import { h } from 'vue'
 
-const UCheckbox = resolveComponent("UCheckbox");
+const UCheckbox = resolveComponent('UCheckbox')
 
 const columns: TableColumn[] = [
   {
-    id: "select",
+    id: 'select',
     header: ({ table }) =>
       h(UCheckbox, {
         modelValue: table.getIsSomePageRowsSelected()
-          ? "indeterminate"
+          ? 'indeterminate'
           : table.getIsAllPageRowsSelected(),
-        "onUpdate:modelValue": (value: boolean | "indeterminate") =>
+        'onUpdate:modelValue': (value: boolean | 'indeterminate') =>
           table.toggleAllPageRowsSelected(!!value),
-        "aria-label": "Select all",
+        'aria-label': 'Select all',
       }),
     cell: ({ row }) =>
       h(UCheckbox, {
         modelValue: row.getIsSelected(),
-        "onUpdate:modelValue": (value: boolean | "indeterminate") => row.toggleSelected(!!value),
-        "aria-label": "Select row",
+        'onUpdate:modelValue': (value: boolean | 'indeterminate') => row.toggleSelected(!!value),
+        'aria-label': 'Select row',
       }),
   },
   // ... other columns
-];
+]
 ```
 
 ## With pagination
@@ -170,14 +170,14 @@ Use `v-model:pagination` on `UTable` with TanStack's `getPaginationRowModel`, th
 
 ```vue
 <script setup lang="ts">
-import { getPaginationRowModel } from "@tanstack/vue-table";
+import { getPaginationRowModel } from '@tanstack/vue-table'
 
-const table = useTemplateRef("table");
+const table = useTemplateRef('table')
 
 const pagination = ref({
   pageIndex: 0,
   pageSize: 5,
-});
+})
 </script>
 
 <template>
@@ -206,7 +206,7 @@ Use `status === 'pending' || status === 'idle'` for loading state — `idle` cov
 
 ```vue
 <script setup lang="ts">
-const { data, status } = useLazyFetch("/api/users", { server: false });
+const { data, status } = useLazyFetch('/api/users', { server: false })
 </script>
 
 <template>
@@ -218,13 +218,13 @@ For server-side pagination:
 
 ```vue
 <script setup lang="ts">
-const page = ref(1);
+const page = ref(1)
 
 const { data, status } = await useAsyncData(
-  "users",
-  () => $fetch("/api/users", { query: { page: page.value } }),
+  'users',
+  () => $fetch('/api/users', { query: { page: page.value } }),
   { watch: [page] },
-);
+)
 </script>
 
 <template>

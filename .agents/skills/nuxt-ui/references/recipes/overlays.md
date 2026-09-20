@@ -6,11 +6,11 @@ Patterns for modals, slideovers, drawers, and command palettes.
 
 ```vue
 <script setup lang="ts">
-const isOpen = ref(false);
+const isOpen = ref(false)
 
 function confirmDelete() {
   // perform delete
-  isOpen.value = false;
+  isOpen.value = false
 }
 </script>
 
@@ -38,13 +38,13 @@ Reusable pattern — no template state needed at the call site.
 ```vue [components/ConfirmModal.vue]
 <script setup lang="ts">
 defineProps<{
-  title: string;
-  description?: string;
-}>();
+  title: string
+  description?: string
+}>()
 
 const emit = defineEmits<{
-  close: [confirmed: boolean];
-}>();
+  close: [confirmed: boolean]
+}>()
 </script>
 
 <template>
@@ -63,14 +63,14 @@ const emit = defineEmits<{
 
 ```ts
 // Usage anywhere
-const overlay = useOverlay();
-const confirm = overlay.create(ConfirmModal);
+const overlay = useOverlay()
+const confirm = overlay.create(ConfirmModal)
 
 async function deleteItem(item) {
   const instance = confirm.open({
-    title: "Delete item",
+    title: 'Delete item',
     description: `Are you sure you want to delete "${item.name}"?`,
-  });
+  })
 
   if (await instance.result) {
     // user confirmed
@@ -82,21 +82,21 @@ async function deleteItem(item) {
 
 ```vue
 <script setup lang="ts">
-import * as z from "zod";
+import * as z from 'zod'
 
-const isOpen = ref(false);
+const isOpen = ref(false)
 
 const schema = z.object({
   name: z.string().min(1),
   email: z.email(),
-});
+})
 
-type Schema = z.output<typeof schema>;
-const state = reactive<Partial<Schema>>({});
+type Schema = z.output<typeof schema>
+const state = reactive<Partial<Schema>>({})
 
 function onSave() {
   // save user
-  isOpen.value = false;
+  isOpen.value = false
 }
 </script>
 
@@ -127,37 +127,37 @@ function onSave() {
 
 ```vue
 <script setup lang="ts">
-const isOpen = ref(false);
+const isOpen = ref(false)
 
 defineShortcuts({
   meta_k: () => {
-    isOpen.value = true;
+    isOpen.value = true
   },
-});
+})
 
 const groups = [
   {
-    id: "actions",
-    label: "Actions",
+    id: 'actions',
+    label: 'Actions',
     items: [
       {
-        label: "New file",
-        icon: "i-lucide-file-plus",
-        kbds: ["meta", "n"],
+        label: 'New file',
+        icon: 'i-lucide-file-plus',
+        kbds: ['meta', 'n'],
         onSelect: () => newFile(),
       },
-      { label: "New folder", icon: "i-lucide-folder-plus", onSelect: () => newFolder() },
+      { label: 'New folder', icon: 'i-lucide-folder-plus', onSelect: () => newFolder() },
     ],
   },
   {
-    id: "navigation",
-    label: "Navigation",
+    id: 'navigation',
+    label: 'Navigation',
     items: [
-      { label: "Dashboard", icon: "i-lucide-house", to: "/dashboard" },
-      { label: "Settings", icon: "i-lucide-settings", to: "/settings" },
+      { label: 'Dashboard', icon: 'i-lucide-house', to: '/dashboard' },
+      { label: 'Settings', icon: 'i-lucide-settings', to: '/settings' },
     ],
   },
-];
+]
 </script>
 
 <template>
@@ -181,7 +181,7 @@ const groups = [
 
 ```vue
 <script setup lang="ts">
-const isOpen = ref(false);
+const isOpen = ref(false)
 </script>
 
 <template>

@@ -16,12 +16,12 @@ Using `from-font` is the most robust approach. It extracts the aspect ratio of t
 
 ```css
 .content-area {
-  font-family: "MyCustomWebFont";
+  font-family: 'MyCustomWebFont';
   /* Automatically extract and apply x-height ratio from MyCustomWebFont */
   font-size-adjust: from-font;
 }
 .content-area span {
-  font-family: "MyOtherCustomWebFont";
+  font-family: 'MyOtherCustomWebFont';
 }
 ```
 

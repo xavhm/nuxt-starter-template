@@ -15,12 +15,12 @@ You can use the transparency of an image as a mask, with opaque parts visible an
 ```css
 .shaped-element {
   /* MANDATORY: Use vendor prefix for wider support in older browsers */
-  -webkit-mask-image: url("mask.svg");
+  -webkit-mask-image: url('mask.svg');
   -webkit-mask-size: cover; /* Scale mask to cover element */
   -webkit-mask-repeat: no-repeat; /* Do not tile the mask */
 
   /* Standard property for modern browsers */
-  mask-image: url("mask.svg");
+  mask-image: url('mask.svg');
   mask-size: cover;
   mask-repeat: no-repeat;
 }

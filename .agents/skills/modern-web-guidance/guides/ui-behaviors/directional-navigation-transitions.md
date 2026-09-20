@@ -82,13 +82,13 @@ html:active-view-transition-type(backward)::view-transition-new(root) {
 When navigating, pass the appropriate type to the `startViewTransition` method.
 
 ```javascript
-const transitionType = yourTransitionTypeLogic();
-const updateDOM = yourUpdateDOMLogic();
+const transitionType = yourTransitionTypeLogic()
+const updateDOM = yourUpdateDOMLogic()
 
 document.startViewTransition({
   update: updateDOM,
   types: [transitionType], // Matches the CSS :active-view-transition-type() selectors
-});
+})
 ```
 
 ### Accessibility
@@ -122,14 +122,14 @@ The View Transitions API is a progressive enhancement. In unsupported browsers, 
 function navigate(updateDOM, direction) {
   // Feature detect for browsers that do not support View Transitions
   if (!document.startViewTransition) {
-    updateDOM();
-    return;
+    updateDOM()
+    return
   }
 
   // Start transition with the specific navigation type
   document.startViewTransition({
     update: updateDOM,
     types: [direction], // Matches the CSS :active-view-transition-type() selectors
-  });
+  })
 }
 ```

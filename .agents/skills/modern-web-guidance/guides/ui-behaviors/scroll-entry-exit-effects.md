@@ -155,23 +155,23 @@ For this use-case specifically, the following script applies the fallback for br
 
 ```html
 <script>
-  if (!CSS.supports("(animation-timeline: view()) and (animation-range: entry)")) {
+  if (!CSS.supports('(animation-timeline: view()) and (animation-range: entry)')) {
     const observer = new IntersectionObserver(
       (entries) => {
         for (const entry of entries) {
           // This matches the effect as defined in the CSS example above.
           // Customize this further if needed.
-          entry.target.style.scale = 0.5 + entry.intersectionRatio * 0.5;
+          entry.target.style.scale = 0.5 + entry.intersectionRatio * 0.5
         }
       },
       {
         threshold: Array.from({ length: 101 }, (_, i) => i / 100),
       },
-    );
+    )
 
-    document.querySelectorAll(".scroller > *").forEach((el) => {
-      observer.observe(el);
-    });
+    document.querySelectorAll('.scroller > *').forEach((el) => {
+      observer.observe(el)
+    })
   }
 </script>
 ```

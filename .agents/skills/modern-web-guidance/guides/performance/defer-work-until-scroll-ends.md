@@ -25,20 +25,20 @@ To implement a defer-work pattern:
 ```
 
 ```javascript
-const scroller = document.querySelector(".scroll-container");
+const scroller = document.querySelector('.scroll-container')
 
 // 1. Informative feedback during scroll
-scroller.addEventListener("scroll", () => {
+scroller.addEventListener('scroll', () => {
   // Avoid dynamic heavier data updates here
-  console.log("Scrolling dynamically... updates deferred");
-});
+  console.log('Scrolling dynamically... updates deferred')
+})
 
 // 2. Safe callback when scrolling rests
-scroller.addEventListener("scrollend", () => {
+scroller.addEventListener('scrollend', () => {
   // Run layout recalculations or analytical beacons updates here
-  const currentVisibleSection = findMostVisibleSection(scroller);
-  fetchAdditionalData(currentVisibleSection);
-});
+  const currentVisibleSection = findMostVisibleSection(scroller)
+  fetchAdditionalData(currentVisibleSection)
+})
 ```
 
 ## Strategic Implementation & Best Practices
@@ -57,22 +57,22 @@ For unsupported browsers, fall back to a debounced `scroll` event with `setTimeo
 
 ```javascript
 function initializeDemo() {
-  const scroller = document.querySelector("#scroller");
-  scroller.addEventListener("scrollend", () => {
+  const scroller = document.querySelector('#scroller')
+  scroller.addEventListener('scrollend', () => {
     // Safe execution
-  });
+  })
 }
 
-if ("onscrollend" in window) {
-  initializeDemo();
+if ('onscrollend' in window) {
+  initializeDemo()
 } else {
-  initializeDemo();
-  const scroller = document.querySelector("#scroller");
-  scroller.addEventListener("scroll", () => {
-    clearTimeout(window.scrollendtimer);
+  initializeDemo()
+  const scroller = document.querySelector('#scroller')
+  scroller.addEventListener('scroll', () => {
+    clearTimeout(window.scrollendtimer)
     window.scrollendtimer = setTimeout(() => {
-      scroller.dispatchEvent(new CustomEvent("scrollend"));
-    }, 100);
-  });
+      scroller.dispatchEvent(new CustomEvent('scrollend'))
+    }, 100)
+  })
 }
 ```

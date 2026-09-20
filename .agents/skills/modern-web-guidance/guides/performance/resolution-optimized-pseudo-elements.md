@@ -12,12 +12,12 @@ You can use the `image-set()` function directly within the `content` property of
   /* MANDATORY: Always order your formats from most optimized (AVIF) to least optimized (JPEG/PNG). 
      The browser will stop at the first supported format. */
   content: image-set(
-    url("icon.avif") type("image/avif") 1x,
-    url("icon-2x.avif") type("image/avif") 2x,
-    url("icon.webp") type("image/webp") 1x,
-    url("icon-2x.webp") type("image/webp") 2x,
-    url("icon.png") type("image/png") 1x,
-    url("icon-2x.png") type("image/png") 2x
+    url('icon.avif') type('image/avif') 1x,
+    url('icon-2x.avif') type('image/avif') 2x,
+    url('icon.webp') type('image/webp') 1x,
+    url('icon-2x.webp') type('image/webp') 2x,
+    url('icon.png') type('image/png') 1x,
+    url('icon-2x.png') type('image/png') 2x
   );
 
   display: inline-block;
@@ -36,14 +36,14 @@ For older browsers that do not support the `image-set()` function, you **MUST** 
 ```css
 .icon-button::before {
   /* MANDATORY: Fallback for browsers that do not support image-set() */
-  content: url("icon.png");
+  content: url('icon.png');
 
   /* Modern browsers will apply this and override the fallback */
   content: image-set(
-    url("icon.avif") type("image/avif") 1x,
-    url("icon-2x.avif") type("image/avif") 2x,
-    url("icon.png") type("image/png") 1x,
-    url("icon-2x.png") type("image/png") 2x
+    url('icon.avif') type('image/avif') 1x,
+    url('icon-2x.avif') type('image/avif') 2x,
+    url('icon.png') type('image/png') 1x,
+    url('icon-2x.png') type('image/png') 2x
   );
 }
 ```

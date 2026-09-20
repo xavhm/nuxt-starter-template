@@ -11,12 +11,12 @@ To enable smooth interpolation of gradient stop values, you must register the va
 ```css
 /* Register the spotlight inner and outer sizes to enable interpolation */
 @property --inner-size {
-  syntax: "<length-percentage>";
+  syntax: '<length-percentage>';
   inherits: true;
   initial-value: 0px;
 }
 @property --outer-size {
-  syntax: "<length-percentage>";
+  syntax: '<length-percentage>';
   inherits: true;
   initial-value: 0px;
 }
@@ -61,24 +61,24 @@ Apply the `mask-image` to the element you want to reveal. Use a `radial-gradient
 Track the pointer position and update the CSS variables. Because the properties are registered and have a `transition` defined, the spotlight will move smoothly even if the pointer events are infrequent.
 
 ```javascript
-const container = document.querySelector(".container");
+const container = document.querySelector('.container')
 // Store the container's bounding rect
-let rect = container.getBoundingClientRect();
+let rect = container.getBoundingClientRect()
 // Update the rect when the container is resized
 const resizeObserver = new ResizeObserver(() => {
-  rect = container.getBoundingClientRect();
-});
-resizeObserver.observe(container);
+  rect = container.getBoundingClientRect()
+})
+resizeObserver.observe(container)
 
-container.addEventListener("pointermove", (e) => {
+container.addEventListener('pointermove', (e) => {
   // Calculate position as a percentage of the container.
-  const x = ((e.clientX - rect.left) / rect.width) * 100;
-  const y = ((e.clientY - rect.top) / rect.height) * 100;
+  const x = ((e.clientX - rect.left) / rect.width) * 100
+  const y = ((e.clientY - rect.top) / rect.height) * 100
 
   // Update the registered properties
-  container.style.setProperty("--mouse-x", `${x}%`);
-  container.style.setProperty("--mouse-y", `${y}%`);
-});
+  container.style.setProperty('--mouse-x', `${x}%`)
+  container.style.setProperty('--mouse-y', `${y}%`)
+})
 ```
 
 ### 4. Accessibility and Interaction

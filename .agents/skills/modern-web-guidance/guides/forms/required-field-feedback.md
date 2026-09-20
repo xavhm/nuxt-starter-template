@@ -69,38 +69,38 @@ input:required:user-valid {
 MANDATORY: Because `:user-invalid` is a visual state, you MUST provide a JavaScript bridge to sync `aria-invalid="true"` dynamically for assistive technologies when a user blurs an invalid field or attempts submission.
 
 ```javascript
-const form = document.getElementById("feedback-form");
+const form = document.getElementById('feedback-form')
 
 const syncAriaInvalid = (input) => {
   if (!input.checkValidity()) {
-    input.setAttribute("aria-invalid", "true");
+    input.setAttribute('aria-invalid', 'true')
   } else {
-    input.removeAttribute("aria-invalid");
+    input.removeAttribute('aria-invalid')
   }
-};
+}
 
 // Sync on blur when a user finishes interacting
 form.addEventListener(
-  "blur",
+  'blur',
   (e) => {
-    if (e.target.matches("input[required]")) {
-      syncAriaInvalid(e.target);
+    if (e.target.matches('input[required]')) {
+      syncAriaInvalid(e.target)
     }
   },
   true,
-);
+)
 
 // Sync all required fields when submission is attempted
-form.addEventListener("submit", () => {
-  form.querySelectorAll("input[required]").forEach(syncAriaInvalid);
-});
+form.addEventListener('submit', () => {
+  form.querySelectorAll('input[required]').forEach(syncAriaInvalid)
+})
 
 // Remove error state immediately upon correction
-form.addEventListener("input", (e) => {
-  if (e.target.matches("input[required]") && e.target.checkValidity()) {
-    e.target.removeAttribute("aria-invalid");
+form.addEventListener('input', (e) => {
+  if (e.target.matches('input[required]') && e.target.checkValidity()) {
+    e.target.removeAttribute('aria-invalid')
   }
-});
+})
 ```
 
 ## Fallbacking & Browser Support
@@ -131,70 +131,70 @@ Use a reusable utility that tracks interaction state using a `WeakMap`. This avo
 
 ```javascript
 const UserInvalidFallback = (() => {
-  const dirtyState = new WeakMap();
+  const dirtyState = new WeakMap()
 
   const updateState = (input) => {
-    const isValid = input.checkValidity();
+    const isValid = input.checkValidity()
 
     // Update both visual and ARIA state
-    input.classList.toggle("user-invalid-fallback", !isValid);
-    input.classList.toggle("user-valid-fallback", isValid);
+    input.classList.toggle('user-invalid-fallback', !isValid)
+    input.classList.toggle('user-valid-fallback', isValid)
 
     if (!isValid) {
-      input.setAttribute("aria-invalid", "true");
+      input.setAttribute('aria-invalid', 'true')
     } else {
-      input.removeAttribute("aria-invalid");
+      input.removeAttribute('aria-invalid')
     }
-  };
+  }
 
   const handleEvent = (event) => {
-    const input = event.target;
+    const input = event.target
 
-    if (event.type === "reset") {
-      const controls = input.elements || [];
+    if (event.type === 'reset') {
+      const controls = input.elements || []
       for (const control of controls) {
-        dirtyState.delete(control);
-        control.classList.remove("user-invalid-fallback");
-        control.classList.remove("user-valid-fallback");
-        control.removeAttribute("aria-invalid");
+        dirtyState.delete(control)
+        control.classList.remove('user-invalid-fallback')
+        control.classList.remove('user-valid-fallback')
+        control.removeAttribute('aria-invalid')
       }
-      return;
+      return
     }
 
-    if (!input.checkValidity) return;
+    if (!input.checkValidity) return
 
-    if (event.type === "input" || event.type === "change") {
-      const state = dirtyState.get(input) || { hasInteracted: false, hasBlurred: false };
-      state.hasInteracted = true;
-      dirtyState.set(input, state);
+    if (event.type === 'input' || event.type === 'change') {
+      const state = dirtyState.get(input) || { hasInteracted: false, hasBlurred: false }
+      state.hasInteracted = true
+      dirtyState.set(input, state)
       if (state.hasBlurred) {
-        updateState(input);
+        updateState(input)
       }
-    } else if (event.type === "blur") {
-      const state = dirtyState.get(input) || { hasInteracted: false, hasBlurred: false };
-      state.hasBlurred = true;
-      dirtyState.set(input, state);
+    } else if (event.type === 'blur') {
+      const state = dirtyState.get(input) || { hasInteracted: false, hasBlurred: false }
+      state.hasBlurred = true
+      dirtyState.set(input, state)
       if (state.hasInteracted) {
-        updateState(input);
+        updateState(input)
       }
     }
-  };
+  }
 
   const init = (root = document) => {
-    if (CSS.supports("selector(:user-invalid)")) return;
+    if (CSS.supports('selector(:user-invalid)')) return
 
-    root.addEventListener("blur", handleEvent, true); // Capture phase
-    root.addEventListener("input", handleEvent);
-    root.addEventListener("change", handleEvent);
-    root.addEventListener("reset", handleEvent, true); // Capture resets
-  };
+    root.addEventListener('blur', handleEvent, true) // Capture phase
+    root.addEventListener('input', handleEvent)
+    root.addEventListener('change', handleEvent)
+    root.addEventListener('reset', handleEvent, true) // Capture resets
+  }
 
-  return { init };
-})();
+  return { init }
+})()
 
 // Initialize for a specific form
-const form = document.querySelector("#demo-form");
-UserInvalidFallback.init(form);
+const form = document.querySelector('#demo-form')
+UserInvalidFallback.init(form)
 ```
 
 ## Other Considerations
@@ -206,12 +206,12 @@ UserInvalidFallback.init(form);
 ```javascript
 // Sync aria-invalid with the CSS :user-invalid state
 const syncAria = (el) => {
-  el.setAttribute?.("aria-invalid", el.matches(":user-invalid") ? "true" : "false");
-};
+  el.setAttribute?.('aria-invalid', el.matches(':user-invalid') ? 'true' : 'false')
+}
 
 // Update on blur (to show error) and input (to clear it)
-document.addEventListener("blur", (e) => syncAria(e.target), true);
-document.addEventListener("input", (e) => {
-  if (e.target.hasAttribute("aria-invalid")) syncAria(e.target);
-});
+document.addEventListener('blur', (e) => syncAria(e.target), true)
+document.addEventListener('input', (e) => {
+  if (e.target.hasAttribute('aria-invalid')) syncAria(e.target)
+})
 ```

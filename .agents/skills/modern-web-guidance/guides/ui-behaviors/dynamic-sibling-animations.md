@@ -37,11 +37,11 @@ Test for support for `sibling-index()` using CSS with `@supports (animation-dela
 To support stagger animations in older browsers, use JavaScript to add a `--sibling-index` custom property to each sibling element. MANDATORY: wrap this in a `CSS.supports('animation-delay: calc(sibling-index() * 0.1s)')` test to avoid running unneeded JavaScript.
 
 ```js
-if (!CSS.supports("animation-delay: calc(sibling-index() * 0.1s)")) {
-  const staggerList = document.getElementById("stagger-list");
-  [...staggerList.children].forEach((el, index) =>
-    el.style.setProperty("--sibling-index", index + 1),
-  );
+if (!CSS.supports('animation-delay: calc(sibling-index() * 0.1s)')) {
+  const staggerList = document.getElementById('stagger-list')
+  ;[...staggerList.children].forEach((el, index) =>
+    el.style.setProperty('--sibling-index', index + 1),
+  )
 }
 ```
 

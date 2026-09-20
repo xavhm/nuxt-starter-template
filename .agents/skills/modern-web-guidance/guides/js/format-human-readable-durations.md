@@ -14,14 +14,14 @@ To format a duration:
 
 ```javascript
 // 1. Create a duration (e.g., from user input)
-const duration = Temporal.Duration.from({ minutes: 90 });
+const duration = Temporal.Duration.from({ minutes: 90 })
 
 // 2. Balance to hours (converts 90 minutes to 1 hour and 30 minutes)
-const balanced = duration.round({ largestUnit: "hours" });
+const balanced = duration.round({ largestUnit: 'hours' })
 
 // 3. Format using Intl.DurationFormat (Handles pluralization automatically)
-const formatter = new Intl.DurationFormat("en", { style: "long" });
-console.log(formatter.format(balanced));
+const formatter = new Intl.DurationFormat('en', { style: 'long' })
+console.log(formatter.format(balanced))
 // Note: Output may vary by browser (e.g., "1 hour and 30 minutes" or "1 hour, 30 minutes")
 ```
 
@@ -46,16 +46,16 @@ Note that the polyfill does not automatically assign the `Temporal` object to th
 
 ```javascript
 // Check if Temporal is supported natively
-(async () => {
-  if (typeof Temporal === "undefined") {
+;(async () => {
+  if (typeof Temporal === 'undefined') {
     // Load the polyfill conditionally
-    const module = await import("https://esm.sh/@js-temporal/polyfill");
-    globalThis.Temporal = module.Temporal;
+    const module = await import('https://esm.sh/@js-temporal/polyfill')
+    globalThis.Temporal = module.Temporal
     // Extend Date.prototype if needed
-    Date.prototype.toTemporalInstant = module.toTemporalInstant;
-    initializeApp();
+    Date.prototype.toTemporalInstant = module.toTemporalInstant
+    initializeApp()
   }
-})();
+})()
 ```
 
 ### Intl.DurationFormat
@@ -70,18 +70,18 @@ If `Intl.DurationFormat` is not supported, you should feature-detect it and fall
 ```javascript
 // 3. Format the display string
 
-if (typeof Intl.DurationFormat !== "undefined") {
+if (typeof Intl.DurationFormat !== 'undefined') {
   // Use recommended Intl API if available
-  const formatter = new Intl.DurationFormat("en", { style: "long" });
-  console.log(formatter.format(balanced));
+  const formatter = new Intl.DurationFormat('en', { style: 'long' })
+  console.log(formatter.format(balanced))
 } else {
   // Fallback manual formatting (assuming duration is already balanced)
-  const h = balanced.hours;
-  const m = balanced.minutes;
+  const h = balanced.hours
+  const m = balanced.minutes
 
-  const hoursStr = `${h} hour${h === 1 ? "" : "s"}`;
-  const minutesStr = `${m} minute${m === 1 ? "" : "s"}`;
+  const hoursStr = `${h} hour${h === 1 ? '' : 's'}`
+  const minutesStr = `${m} minute${m === 1 ? '' : 's'}`
 
-  console.log(`${hoursStr} and ${minutesStr}`);
+  console.log(`${hoursStr} and ${minutesStr}`)
 }
 ```

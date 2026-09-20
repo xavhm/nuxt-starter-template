@@ -136,9 +136,9 @@ If a user-facing toggle to override it is desired, it should:
 <meta name="color-scheme" content="light dark" />
 <script>
   {
-    const colorScheme = localStorage.getItem("color-scheme");
+    const colorScheme = localStorage.getItem('color-scheme')
     if (colorScheme) {
-      document.querySelector('meta[name="color-scheme"]').content = colorScheme;
+      document.querySelector('meta[name="color-scheme"]').content = colorScheme
     }
   }
 </script>

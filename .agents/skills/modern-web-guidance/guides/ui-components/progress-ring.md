@@ -99,7 +99,7 @@ Users with motion sensitivities may find the transition between values disorient
 
 ```css
 @property --value {
-  syntax: "<number>";
+  syntax: '<number>';
   inherits: true;
   initial-value: 0;
 }
@@ -122,7 +122,7 @@ You can use the CSS attribute selector to automatically update the ring's appear
 
 ```css
 /* Change the fill color to green when the progress reaches 100% */
-progress.progress-ring[value="100"] {
+progress.progress-ring[value='100'] {
   --fill-color: #10b981;
 }
 ```
@@ -161,13 +161,13 @@ attr() is not natively supported by any major browser yet.
 For browsers that don't support the `attr()` CSS function for any property, use a `MutationObserver` to automatically sync the `value` attribute to the `--value` custom property.
 
 ```js
-if (!CSS.supports("width: attr(value type(<number>))")) {
+if (!CSS.supports('width: attr(value type(<number>))')) {
   const observer = new MutationObserver(() => {
-    progress.style.setProperty("--value", progress.getAttribute("value"));
-  });
+    progress.style.setProperty('--value', progress.getAttribute('value'))
+  })
   observer.observe(progress, {
     attributes: true,
-    attributeFilter: ["value"],
-  });
+    attributeFilter: ['value'],
+  })
 }
 ```

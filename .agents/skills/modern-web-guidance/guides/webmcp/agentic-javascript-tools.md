@@ -11,24 +11,24 @@ Tools are registered by passing a tool definition object and an optional options
 WebMCP does not provide an `unregisterTool()` method. To unregister a tool, you must pass an `AbortSignal` during registration and abort that signal when the tool is no longer needed.
 
 ```javascript
-const controller = new AbortController();
+const controller = new AbortController()
 
 await document.modelContext.registerTool(
   {
-    name: "get_user_preferences",
+    name: 'get_user_preferences',
     description: "Retrieves the user's saved preferences.",
-    inputSchema: { type: "object", properties: {} },
+    inputSchema: { type: 'object', properties: {} },
     execute() {
-      const prefs = localStorage.getItem("user_prefs");
-      return prefs ? JSON.parse(prefs) : { theme: "light" };
+      const prefs = localStorage.getItem('user_prefs')
+      return prefs ? JSON.parse(prefs) : { theme: 'light' }
     },
     annotations: { readOnlyHint: true },
   },
   { signal: controller.signal },
-);
+)
 
 // To unregister the tool (e.g., on component unmount):
-controller.abort();
+controller.abort()
 ```
 
 ## Defining Parameters
@@ -37,22 +37,22 @@ Parameters (params) are defined using the `inputSchema` property. This must be a
 
 ```javascript
 await document.modelContext.registerTool({
-  name: "calculate_area",
-  description: "Calculates the area of a rectangle.",
+  name: 'calculate_area',
+  description: 'Calculates the area of a rectangle.',
   inputSchema: {
-    type: "object",
+    type: 'object',
     properties: {
-      width: { type: "number", description: "The width of the rectangle." },
-      height: { type: "number", description: "The height of the rectangle." },
+      width: { type: 'number', description: 'The width of the rectangle.' },
+      height: { type: 'number', description: 'The height of the rectangle.' },
     },
-    required: ["width", "height"],
+    required: ['width', 'height'],
   },
   execute(input) {
     // input is { width: 10, height: 20 }
-    return input.width * input.height;
+    return input.width * input.height
   },
   annotations: { readOnlyHint: true },
-});
+})
 ```
 
 ## Execution Patterns
@@ -92,14 +92,14 @@ To pass context (like stores or application instances) to your tools, use factor
 ```javascript
 export function createInventoryTool(inventoryManager) {
   return {
-    name: "get_inventory",
-    description: "Lists items in the inventory.",
-    inputSchema: { type: "object", properties: {} },
+    name: 'get_inventory',
+    description: 'Lists items in the inventory.',
+    inputSchema: { type: 'object', properties: {} },
     execute() {
-      return inventoryManager.getItems();
+      return inventoryManager.getItems()
     },
     annotations: { readOnlyHint: true },
-  };
+  }
 }
 ```
 
@@ -118,8 +118,8 @@ document.modelContext is not natively supported by any major browser yet.
 The WebMCP Imperative API should be used with feature detection to ensure compatibility with browsers that do not yet support WebMCP.
 
 ```javascript
-const modelContext = document.modelContext || navigator.modelContext;
-if (modelContext && "registerTool" in modelContext) {
+const modelContext = document.modelContext || navigator.modelContext
+if (modelContext && 'registerTool' in modelContext) {
   // Register tools
 }
 ```

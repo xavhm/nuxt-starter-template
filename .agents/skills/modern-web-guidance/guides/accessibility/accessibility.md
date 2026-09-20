@@ -195,25 +195,25 @@ When the hidden content is focusable (skip links, focus-receiving wrappers), the
 // NOTE: This pattern applies ONLY to non-standard UI where no native HTML tag exists.
 // Always prioritize native <button> or <input> elements for standard interactions.
 // Elements MUST have the appropriate ARIA role (e.g., role="treeitem" or role="tab").
-customWidget.addEventListener("keydown", (e) => {
-  if (e.key === "Enter") {
-    toggleWidgetState();
+customWidget.addEventListener('keydown', (e) => {
+  if (e.key === 'Enter') {
+    toggleWidgetState()
   }
-  if (e.key === " ") {
-    e.preventDefault(); // Prevent page scrolling on Spacebar keydown
+  if (e.key === ' ') {
+    e.preventDefault() // Prevent page scrolling on Spacebar keydown
   }
-});
+})
 
-customWidget.addEventListener("keyup", (e) => {
-  if (e.key === " ") {
-    toggleWidgetState();
+customWidget.addEventListener('keyup', (e) => {
+  if (e.key === ' ') {
+    toggleWidgetState()
   }
-});
+})
 
 function toggleWidgetState() {
   // E.g., Manage toggle/expanded states for custom controls
-  const isExpanded = customWidget.getAttribute("aria-expanded") === "true";
-  customWidget.setAttribute("aria-expanded", !isExpanded);
+  const isExpanded = customWidget.getAttribute('aria-expanded') === 'true'
+  customWidget.setAttribute('aria-expanded', !isExpanded)
 }
 ```
 
@@ -473,9 +473,9 @@ Modern browsers provide native solutions for creating modal dialogs which avoid 
 </dialog>
 
 <script>
-  document.getElementById("open-btn").addEventListener("click", () => {
-    document.getElementById("accessible-modal").showModal();
-  });
+  document.getElementById('open-btn').addEventListener('click', () => {
+    document.getElementById('accessible-modal').showModal()
+  })
 </script>
 ```
 

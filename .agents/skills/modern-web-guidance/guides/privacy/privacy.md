@@ -167,11 +167,11 @@ Third-party scripts and resources are a common source of privacy leaks. You are 
 </div>
 
 <script>
-  document.getElementById("play-btn").addEventListener("click", function () {
-    const container = document.getElementById("video-container");
-    const videoId = container.dataset.videoId;
-    container.innerHTML = `<iframe src="https://www.youtube-nocookie.com/embed/${videoId}?autoplay=1" allowfullscreen></iframe>`;
-  });
+  document.getElementById('play-btn').addEventListener('click', function () {
+    const container = document.getElementById('video-container')
+    const videoId = container.dataset.videoId
+    container.innerHTML = `<iframe src="https://www.youtube-nocookie.com/embed/${videoId}?autoplay=1" allowfullscreen></iframe>`
+  })
 </script>
 ```
 
@@ -183,14 +183,14 @@ try {
     identity: {
       providers: [
         {
-          configURL: "https://idp.example/fedcm.json",
-          clientId: "rp-client-id-123",
-          nonce: "a_secure_random_nonce_value",
+          configURL: 'https://idp.example/fedcm.json',
+          clientId: 'rp-client-id-123',
+          nonce: 'a_secure_random_nonce_value',
         },
       ],
     },
-  });
-  authenticateWithBackend(credential.token);
+  })
+  authenticateWithBackend(credential.token)
 } catch (error) {
   // Handle FedCM login failure
 }
@@ -254,9 +254,9 @@ if ('IntersectionObserver' in window) {
 
 ```javascript
 if (navigator.userAgentData) {
-  navigator.userAgentData.getHighEntropyValues(["platformVersion", "architecture"]).then((ua) => {
-    console.log(ua.platformVersion);
-  });
+  navigator.userAgentData.getHighEntropyValues(['platformVersion', 'architecture']).then((ua) => {
+    console.log(ua.platformVersion)
+  })
 }
 ```
 

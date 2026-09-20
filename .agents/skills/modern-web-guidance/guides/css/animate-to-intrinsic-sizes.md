@@ -85,19 +85,19 @@ You can also animate in the opposite direction—starting from a natural size an
 
 ```javascript
 // MANDATORY Accessibility Synchronization: Ensure elements collapsed to zero dimensions are removed from the assistive technology tree, and sync aria-expanded states on triggers.
-const alertElement = document.querySelector(".collapsible-alert");
-alertElement.addEventListener("transitionend", (e) => {
-  if (e.propertyName === "block-size" && alertElement.classList.contains("is-dismissed")) {
-    alertElement.hidden = true;
+const alertElement = document.querySelector('.collapsible-alert')
+alertElement.addEventListener('transitionend', (e) => {
+  if (e.propertyName === 'block-size' && alertElement.classList.contains('is-dismissed')) {
+    alertElement.hidden = true
   }
-});
+})
 
 // Example trigger syncer
-const triggerBtn = document.querySelector(".accordion-trigger");
-triggerBtn?.addEventListener("click", () => {
-  const isExpanded = triggerBtn.getAttribute("aria-expanded") === "true";
-  triggerBtn.setAttribute("aria-expanded", !isExpanded);
-});
+const triggerBtn = document.querySelector('.accordion-trigger')
+triggerBtn?.addEventListener('click', () => {
+  const isExpanded = triggerBtn.getAttribute('aria-expanded') === 'true'
+  triggerBtn.setAttribute('aria-expanded', !isExpanded)
+})
 ```
 
 ## Key constraints

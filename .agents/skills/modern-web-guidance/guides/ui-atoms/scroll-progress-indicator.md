@@ -130,16 +130,16 @@ For this use-case specifically, the following script applies the fallback for br
 
 ```html
 <script>
-  if (!CSS.supports("animation-timeline", "scroll()")) {
-    const progress = document.querySelector("#progress");
+  if (!CSS.supports('animation-timeline', 'scroll()')) {
+    const progress = document.querySelector('#progress')
 
-    window.addEventListener("scroll", () => {
-      const scrollable = document.documentElement.scrollHeight - window.innerHeight;
-      const scrolled = window.scrollY;
-      const progressPercentage = scrolled / scrollable;
+    window.addEventListener('scroll', () => {
+      const scrollable = document.documentElement.scrollHeight - window.innerHeight
+      const scrolled = window.scrollY
+      const progressPercentage = scrolled / scrollable
 
-      progress.style.transform = `scaleX(${progressPercentage})`;
-    });
+      progress.style.transform = `scaleX(${progressPercentage})`
+    })
   }
 </script>
 ```

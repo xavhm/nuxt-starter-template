@@ -118,13 +118,13 @@
 <input type="text" id="code" name="code" required pattern="\d{4}" />
 
 <script>
-  const input = document.getElementById("code");
-  input.addEventListener("invalid", () => {
-    input.setCustomValidity("Please enter exactly 4 digits.");
-  });
-  input.addEventListener("input", () => {
-    input.setCustomValidity("");
-  });
+  const input = document.getElementById('code')
+  input.addEventListener('invalid', () => {
+    input.setCustomValidity('Please enter exactly 4 digits.')
+  })
+  input.addEventListener('input', () => {
+    input.setCustomValidity('')
+  })
 </script>
 ```
 
@@ -209,7 +209,7 @@ input {
     white-space: nowrap;
   }
   .checkbox-label::before {
-    content: "";
+    content: '';
     display: inline-block;
     width: 1.25rem;
     height: 1.25rem;
@@ -235,11 +235,11 @@ input {
 ### Code Example
 
 ```js
-form.addEventListener("submit", (e) => {
-  e.preventDefault();
-  const data = new FormData(form);
+form.addEventListener('submit', (e) => {
+  e.preventDefault()
+  const data = new FormData(form)
   // fetch('/submit', { method: 'POST', body: data });
-});
+})
 ```
 
 ## 8. Identity, Payments, and Advanced Security
@@ -382,12 +382,12 @@ form.addEventListener("submit", (e) => {
 </form>
 
 <script>
-  const trackForm = document.getElementById("track-form");
-  const trackBtn = document.getElementById("submit-btn");
+  const trackForm = document.getElementById('track-form')
+  const trackBtn = document.getElementById('submit-btn')
 
-  trackBtn.addEventListener("click", () => {
-    console.log("Analytics Event: Submit clicked");
-  });
+  trackBtn.addEventListener('click', () => {
+    console.log('Analytics Event: Submit clicked')
+  })
 </script>
 ```
 

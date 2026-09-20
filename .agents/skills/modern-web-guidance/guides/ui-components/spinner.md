@@ -52,18 +52,18 @@ The spinner uses a `conic-gradient` to create a visual trail.
 
 ```css
 @property --arc-start {
-  syntax: "<angle>";
+  syntax: '<angle>';
   inherits: false;
   initial-value: 0deg;
 }
 @property --arc-end {
-  syntax: "<angle>";
+  syntax: '<angle>';
   inherits: false;
   initial-value: 0deg;
 }
 /* Use a custom property to conditionally include the dash animation */
 @property --progress-dash-animation {
-  syntax: "*";
+  syntax: '*';
   inherits: false;
   initial-value:
     ,

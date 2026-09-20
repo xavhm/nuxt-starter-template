@@ -1,6 +1,6 @@
 allowBuilds:
-  "@parcel/watcher": false
-  "@tailwindcss/oxide": false
+  '@parcel/watcher': false
+  '@tailwindcss/oxide': false
   better-sqlite3: true
   esbuild: false
   unrs-resolver: false
@@ -9,9 +9,9 @@ catalog:
   vite: npm:@voidzero-dev/vite-plus-core@0.3.3
   vite-plus: 0.3.3
 overrides:
-  vite@*: "catalog:"
+  vite@*: 'catalog:'
 peerDependencyRules:
   allowAny:
     - vite
   allowedVersions:
-    vite: "*"
+    vite: '*'

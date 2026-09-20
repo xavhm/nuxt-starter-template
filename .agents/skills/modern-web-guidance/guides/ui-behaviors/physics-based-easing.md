@@ -153,25 +153,24 @@ Optional: If a high-fidelity physics animation is critical even in older browser
 
 ```javascript
 /* Detect if the browser supports the linear() function */
-const supportsLinearEasing =
-  window.CSS && CSS.supports("animation-timing-function", "linear(0, 1)");
+const supportsLinearEasing = window.CSS && CSS.supports('animation-timing-function', 'linear(0, 1)')
 
 if (!supportsLinearEasing) {
   /* 
      Example using Motion (motion.dev) for a spring fallback.
      This should only be initialized if native CSS support is missing.
   */
-  import("https://cdn.jsdelivr.net/npm/motion@latest/dist/motion.js").then(
+  import('https://cdn.jsdelivr.net/npm/motion@latest/dist/motion.js').then(
     ({ animate, spring }) => {
       animate(
-        ".element",
-        { transform: "scale(1.2)" },
+        '.element',
+        { transform: 'scale(1.2)' },
         {
           easing: spring({ stiffness: 100, damping: 10 }),
         },
-      );
+      )
     },
-  );
+  )
 }
 ```
 

@@ -20,7 +20,7 @@ Apply the property to the element or a parent container. This ensures that if th
 ```css
 .text-content {
   /* Define your font stack as usual */
-  font-family: "MyWebFont", "Arial", sans-serif;
+  font-family: 'MyWebFont', 'Arial', sans-serif;
   font-size: 1rem;
 
   /* MANDATORY: Normalize the font size based on the primary font's x-height.

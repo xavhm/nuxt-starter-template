@@ -50,7 +50,7 @@ The tooltip can be positioned using anchor positioning. When the tooltip is open
 
 ```css
 /* MANDATORY: use explicit anchor names for compatibility with the polyfill */
-button[interestfor="tooltip-dom"] {
+button[interestfor='tooltip-dom'] {
   anchor-name: --tooltip-dom;
 }
 #tooltip-dom {
@@ -80,9 +80,9 @@ Interest invokers must be conditionally polyfilled using the `interestfor` polyf
 
 ```html
 <script type="module">
-  if (!HTMLButtonElement.prototype.hasOwnProperty("interestForElement")) {
+  if (!HTMLButtonElement.prototype.hasOwnProperty('interestForElement')) {
     // CDN link only used for example, prefer bundling.
-    await import("https://unpkg.com/interestfor@latest");
+    await import('https://unpkg.com/interestfor@latest')
   }
 </script>
 ```
@@ -100,8 +100,8 @@ With a bundler or import map:
 
 ```js
 // MANDATORY: Feature detect 'popover' on HTMLElement.prototype.
-if (!("popover" in HTMLElement.prototype)) {
-  import("@oddbird/popover-polyfill");
+if (!('popover' in HTMLElement.prototype)) {
+  import('@oddbird/popover-polyfill')
 }
 ```
 
@@ -109,8 +109,8 @@ Without a bundler, import from a CDN inside a `<script type="module">`:
 
 ```html
 <script type="module">
-  if (!("popover" in HTMLElement.prototype)) {
-    import("https://unpkg.com/@oddbird/popover-polyfill@latest/dist/popover.min.js");
+  if (!('popover' in HTMLElement.prototype)) {
+    import('https://unpkg.com/@oddbird/popover-polyfill@latest/dist/popover.min.js')
   }
 </script>
 ```
@@ -138,14 +138,14 @@ Anchor positioning is not natively supported by any major browser yet.
 ```html
 <!-- MANDATORY: Conditionally install the anchor positioning polyfill -->
 <script type="module">
-  if (!("anchorName" in document.documentElement.style)) {
-    await import("https://unpkg.com/@oddbird/css-anchor-positioning");
+  if (!('anchorName' in document.documentElement.style)) {
+    await import('https://unpkg.com/@oddbird/css-anchor-positioning')
   }
 </script>
 ```
 
 ```css
-button[interestfor="tooltip-attrs"] {
+button[interestfor='tooltip-attrs'] {
   /* MANDATORY: Each trigger and popover pair must have a unique anchor name, referenced by `anchor-name` on the trigger and `position-anchor` on the popover. */
   anchor-name: --tooltip-attrs;
 }

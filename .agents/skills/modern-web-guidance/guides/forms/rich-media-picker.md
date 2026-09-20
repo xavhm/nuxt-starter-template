@@ -139,10 +139,10 @@ For browsers that do not yet support `appearance: base-select`, the `<select>` e
 - **HTML Structure Handling**: Standard parsers may ignore the `<button>` and `<selectedcontent>` tags inside `<select>` or treat them as invalid. No heavy JavaScript polyfills are strictly required for progressive enhancement if you view standard text as a readable fallback.
 
 ```javascript
-document.addEventListener("DOMContentLoaded", () => {
+document.addEventListener('DOMContentLoaded', () => {
   // Check if browser supports base-select value
-  if (!CSS.supports("appearance", "base-select")) {
+  if (!CSS.supports('appearance', 'base-select')) {
     // Custom select overrides are not supported natively.
   }
-});
+})
 ```

@@ -116,20 +116,20 @@ INP measures the latency of all interactive events across the page's lifecycle. 
 ```javascript
 // Polyfill for yielding to main thread
 async function yieldToMain() {
-  if ("scheduler" in window && "yield" in scheduler) {
-    return await scheduler.yield();
+  if ('scheduler' in window && 'yield' in scheduler) {
+    return await scheduler.yield()
   }
-  return new Promise((resolve) => setTimeout(resolve, 0));
+  return new Promise((resolve) => setTimeout(resolve, 0))
 }
 
 // Processing a large array without blocking user input
 async function processLargeList(items) {
   for (let i = 0; i < items.length; i++) {
-    processItem(items[i]);
+    processItem(items[i])
 
     // Yield every 50 iterations to allow rendering/interaction
     if (i % 50 === 0) {
-      await yieldToMain();
+      await yieldToMain()
     }
   }
 }
@@ -283,37 +283,37 @@ Client-side caching via Service Workers allows applications to bypass the networ
 **JS: Service Worker Caching via Workbox**
 
 ```javascript
-import { registerRoute } from "workbox-routing";
-import { CacheFirst, StaleWhileRevalidate, NetworkFirst } from "workbox-strategies";
-import { ExpirationPlugin } from "workbox-expiration";
-import { CacheableResponsePlugin } from "workbox-cacheable-response";
+import { registerRoute } from 'workbox-routing'
+import { CacheFirst, StaleWhileRevalidate, NetworkFirst } from 'workbox-strategies'
+import { ExpirationPlugin } from 'workbox-expiration'
+import { CacheableResponsePlugin } from 'workbox-cacheable-response'
 
 // 1. HTML Documents: Network First
 registerRoute(
-  ({ request }) => request.mode === "navigate",
-  new NetworkFirst({ cacheName: "pages-cache" }),
-);
+  ({ request }) => request.mode === 'navigate',
+  new NetworkFirst({ cacheName: 'pages-cache' }),
+)
 
 // 2. Static Assets (JS, CSS, Fonts): Cache First
 registerRoute(
-  ({ request }) => ["style", "script", "font"].includes(request.destination),
+  ({ request }) => ['style', 'script', 'font'].includes(request.destination),
   new CacheFirst({
-    cacheName: "static-resources",
+    cacheName: 'static-resources',
     plugins: [
       new CacheableResponsePlugin({ statuses: [0, 200] }),
       new ExpirationPlugin({ maxEntries: 50, maxAgeSeconds: 30 * 24 * 60 * 60 }),
     ],
   }),
-);
+)
 
 // 3. API Responses: Stale While Revalidate
 registerRoute(
-  ({ url }) => url.pathname.startsWith("/api/v1/content"),
+  ({ url }) => url.pathname.startsWith('/api/v1/content'),
   new StaleWhileRevalidate({
-    cacheName: "api-cache",
+    cacheName: 'api-cache',
     plugins: [new CacheableResponsePlugin({ statuses: [0, 200] })],
   }),
-);
+)
 ```
 
 ## Web Fonts Optimization
@@ -336,8 +336,8 @@ Web fonts are a common source of render blocking. Optimizing them reduces the Fl
 
 ```css
 @font-face {
-  font-family: "Modern Sans";
-  src: url("/fonts/modern-sans.woff2") format("woff2");
+  font-family: 'Modern Sans';
+  src: url('/fonts/modern-sans.woff2') format('woff2');
 }
 ```
 
@@ -405,8 +405,8 @@ Heavy monolithic bundles block main thread parse times on low-end devices. Split
 
 ```javascript
 // Dynamic import of heavy module only when button is clicked
-document.getElementById("heavy-btn").addEventListener("click", async () => {
-  const { heavyFunction } = await import("./heavy-module.js");
-  heavyFunction();
-});
+document.getElementById('heavy-btn').addEventListener('click', async () => {
+  const { heavyFunction } = await import('./heavy-module.js')
+  heavyFunction()
+})
 ```

@@ -6,16 +6,16 @@ Nuxt UI forms use `UForm` + `UFormField` + Standard Schema validation (Zod, Vali
 
 ```vue
 <script setup lang="ts">
-import * as z from "zod";
-import type { FormSubmitEvent } from "@nuxt/ui";
+import * as z from 'zod'
+import type { FormSubmitEvent } from '@nuxt/ui'
 
 const schema = z.object({
-  email: z.email("Invalid email"),
-  password: z.string().min(8, "Min 8 characters"),
-});
+  email: z.email('Invalid email'),
+  password: z.string().min(8, 'Min 8 characters'),
+})
 
-type Schema = z.output<typeof schema>;
-const state = reactive<Partial<Schema>>({ email: "", password: "" });
+type Schema = z.output<typeof schema>
+const state = reactive<Partial<Schema>>({ email: '', password: '' })
 
 function onSubmit(event: FormSubmitEvent<Schema>) {
   // UForm validates before emitting @submit — access validated data via event.data
@@ -178,25 +178,25 @@ function onSubmit(event: FormSubmitEvent<Schema>) {
 
 ```vue
 <script setup lang="ts">
-const form = useTemplateRef("form");
+const form = useTemplateRef('form')
 
 async function validateAndSubmit() {
-  const result = await form.value?.validate({ silent: true });
+  const result = await form.value?.validate({ silent: true })
   if (result) {
     // valid — submit
   }
 }
 
 async function validateEmail() {
-  await form.value?.validate({ name: "email", silent: true });
+  await form.value?.validate({ name: 'email', silent: true })
 }
 
 function setServerError() {
-  form.value?.setErrors([{ name: "email", message: "Email already taken" }]);
+  form.value?.setErrors([{ name: 'email', message: 'Email already taken' }])
 }
 
 function resetErrors() {
-  form.value?.clear();
+  form.value?.clear()
 }
 </script>
 

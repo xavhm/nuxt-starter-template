@@ -230,16 +230,16 @@ See `declarative-dialog-popover-control` (via `npx -y modern-web-guidance@latest
 </dialog>
 
 <script>
-  const dialog = document.getElementById("fav-modal");
-  const openModal = document.getElementById("show-dialog");
+  const dialog = document.getElementById('fav-modal')
+  const openModal = document.getElementById('show-dialog')
 
   // Show modal dialog
-  openModal.addEventListener("click", () => dialog.showModal());
+  openModal.addEventListener('click', () => dialog.showModal())
 
   // Listen for the 'close' event to retrieve the user's choice (returnValue)
-  dialog.addEventListener("close", () => {
-    console.log(dialog.returnValue); // "confirm" or "cancel"
-  });
+  dialog.addEventListener('close', () => {
+    console.log(dialog.returnValue) // "confirm" or "cancel"
+  })
 </script>
 ```
 
@@ -391,15 +391,15 @@ See `forms` (via `npx -y modern-web-guidance@latest retrieve "forms"`) for more 
 
   <script>
     const updateProgress = (percent, hue) => {
-      const bar = document.querySelector(".loading-bar");
-      bar.value = percent;
+      const bar = document.querySelector('.loading-bar')
+      bar.value = percent
 
       // Update dynamic style variable
-      if (hue) bar.style.setProperty("--brand-hue", hue);
-    };
+      if (hue) bar.style.setProperty('--brand-hue', hue)
+    }
 
     // Example: Move to 85% and shift color to green (120)
-    setTimeout(() => updateProgress(85, 120), 1000);
+    setTimeout(() => updateProgress(85, 120), 1000)
   </script>
 </body>
 ```

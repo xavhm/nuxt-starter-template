@@ -41,10 +41,10 @@ Onboarding tours require overlays that persist while users interact with the hig
 #### JavaScript
 
 ```javascript
-const tourStep = document.getElementById("tour-step");
-tourStep.showPopover();
+const tourStep = document.getElementById('tour-step')
+tourStep.showPopover()
 // MANDATORY: Programmatically route focus into the non-modal popover so keyboard/assistive technology users immediately perceive the new context
-tourStep.querySelector("button").focus();
+tourStep.querySelector('button').focus()
 ```
 
 ### Implementation Guidelines
@@ -70,8 +70,8 @@ With a bundler or import map:
 
 ```js
 // MANDATORY: Feature detect 'popover' on HTMLElement.prototype.
-if (!("popover" in HTMLElement.prototype)) {
-  import("@oddbird/popover-polyfill");
+if (!('popover' in HTMLElement.prototype)) {
+  import('@oddbird/popover-polyfill')
 }
 ```
 
@@ -79,8 +79,8 @@ Without a bundler, import from a CDN inside a `<script type="module">`:
 
 ```html
 <script type="module">
-  if (!("popover" in HTMLElement.prototype)) {
-    import("https://unpkg.com/@oddbird/popover-polyfill@latest/dist/popover.min.js");
+  if (!('popover' in HTMLElement.prototype)) {
+    import('https://unpkg.com/@oddbird/popover-polyfill@latest/dist/popover.min.js')
   }
 </script>
 ```
@@ -107,8 +107,8 @@ The `@oddbird/css-anchor-positioning` polyfill can be used to emulate anchor pos
 
 ```html
 <script type="module">
-  if (!CSS.supports("anchor-name: --foo")) {
-    await import("https://unpkg.com/@oddbird/css-anchor-positioning");
+  if (!CSS.supports('anchor-name: --foo')) {
+    await import('https://unpkg.com/@oddbird/css-anchor-positioning')
   }
 </script>
 ```

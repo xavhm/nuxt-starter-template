@@ -197,47 +197,46 @@ For this use-case specifically, the following script applies the fallback for br
 
 ```js
 // Fallback for browsers that don't support scroll-driven animations
-if (!CSS.supports("(animation-timeline: view()) and (animation-range: entry)")) {
-  const wrapper = document.querySelector(".wrapper");
-  const layers = document.querySelectorAll(".layer");
+if (!CSS.supports('(animation-timeline: view()) and (animation-range: entry)')) {
+  const wrapper = document.querySelector('.wrapper')
+  const layers = document.querySelectorAll('.layer')
 
   const observer = new IntersectionObserver(
     (entries) => {
       entries.forEach((entry) => {
         if (entry.isIntersecting) {
-          window.addEventListener("scroll", onScroll);
+          window.addEventListener('scroll', onScroll)
         } else {
-          window.removeEventListener("scroll", onScroll);
+          window.removeEventListener('scroll', onScroll)
         }
-      });
+      })
     },
     { threshold: 0 },
-  );
+  )
 
-  observer.observe(wrapper);
+  observer.observe(wrapper)
 
   function onScroll() {
-    const scrollY = window.scrollY;
-    const wrapperRect = wrapper.getBoundingClientRect();
-    const wrapperTop = wrapperRect.top + scrollY;
-    const wrapperHeight = wrapperRect.height;
-    const windowHeight = window.innerHeight;
+    const scrollY = window.scrollY
+    const wrapperRect = wrapper.getBoundingClientRect()
+    const wrapperTop = wrapperRect.top + scrollY
+    const wrapperHeight = wrapperRect.height
+    const windowHeight = window.innerHeight
 
     if (scrollY >= wrapperTop - windowHeight && scrollY <= wrapperTop + wrapperHeight) {
-      const scrollPercent =
-        (scrollY - (wrapperTop - windowHeight)) / (wrapperHeight + windowHeight);
+      const scrollPercent = (scrollY - (wrapperTop - windowHeight)) / (wrapperHeight + windowHeight)
 
       layers.forEach((layer, index) => {
         // This matches the effect as defined in the CSS example above.
         // Customize this further if needed.
-        const initialTranslateY = 100 * index;
-        const translateY = initialTranslateY * (1 - scrollPercent);
-        layer.style.transform = `translateY(${translateY}px)`;
-      });
+        const initialTranslateY = 100 * index
+        const translateY = initialTranslateY * (1 - scrollPercent)
+        layer.style.transform = `translateY(${translateY}px)`
+      })
     }
   }
 
   // Trigger onScroll once to set initial positions
-  onScroll();
+  onScroll()
 }
 ```

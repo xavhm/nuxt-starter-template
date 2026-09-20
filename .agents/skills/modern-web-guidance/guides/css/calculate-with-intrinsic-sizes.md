@@ -204,7 +204,7 @@ For animations, the fallback experience will be an instant jump to the final siz
 
 ```javascript
 /* JavaScript Feature Detection */
-if (CSS.supports("inline-size", "calc-size(auto, size + 0px)")) {
+if (CSS.supports('inline-size', 'calc-size(auto, size + 0px)')) {
   // Apply advanced sizing or animations
 }
 ```

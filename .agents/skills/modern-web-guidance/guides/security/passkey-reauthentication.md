@@ -16,21 +16,21 @@ Create an endpoint that populates the allowed credentials parameters specificall
 
 ```javascript
 // Node.js step-up options generation example
-router.post("/api/reauth/options", enforceActiveSession, async (req, res) => {
-  const userPasskeys = await db.findCredentialsByUserId(req.user.id);
+router.post('/api/reauth/options', enforceActiveSession, async (req, res) => {
+  const userPasskeys = await db.findCredentialsByUserId(req.user.id)
 
   const options = {
     challenge: serverGeneratedBase64UrlChallenge, // Random challenge stored in user session
-    rpId: "example.com",
+    rpId: 'example.com',
     // Enforce allowance strictly limited to the user's credentials list
     allowCredentials: userPasskeys.map((cred) => ({
-      type: "public-key",
+      type: 'public-key',
       id: cred.id,
       transports: cred.transports, // Speeds up resolution by indicating platform transports
     })),
-  };
-  return res.json(options);
-});
+  }
+  return res.json(options)
+})
 ```
 
 ### Verification Endpoint Delta
@@ -52,50 +52,50 @@ Trigger reauthentication when a user presses a "Verify Identity" or "Proceed wit
 ```
 
 ```javascript
-let reauthAbortController = new AbortController();
+let reauthAbortController = new AbortController()
 
 async function triggerButtonReauth() {
   // Abort any background suggestion flows to avoid passkey prompt collisions
-  reauthAbortController.abort();
-  reauthAbortController = new AbortController();
+  reauthAbortController.abort()
+  reauthAbortController = new AbortController()
 
-  const optionsResponse = await fetch("/api/reauth/options", {
-    method: "POST",
-  });
-  const optionsJSON = await optionsResponse.json();
-  const publicKey = PublicKeyCredential.parseRequestOptionsFromJSON(optionsJSON);
+  const optionsResponse = await fetch('/api/reauth/options', {
+    method: 'POST',
+  })
+  const optionsJSON = await optionsResponse.json()
+  const publicKey = PublicKeyCredential.parseRequestOptionsFromJSON(optionsJSON)
 
   try {
     const credential = await navigator.credentials.get({
       publicKey,
       signal: reauthAbortController.signal,
-    });
+    })
 
     if (credential) {
-      const encodedCredential = credential.toJSON();
-      const verifyResponse = await fetch("/api/reauth/verify", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
+      const encodedCredential = credential.toJSON()
+      const verifyResponse = await fetch('/api/reauth/verify', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(encodedCredential),
-      });
+      })
 
       if (verifyResponse.ok) {
-        showTransactionSuccessUI();
+        showTransactionSuccessUI()
       } else if (verifyResponse.status === 404 && PublicKeyCredential.signalUnknownCredential) {
         await PublicKeyCredential.signalUnknownCredential({
           rpId, // RP ID must match the one defined on the server
           credentialId: encodedCredential.id,
-        });
+        })
       }
     }
   } catch (err) {
-    if (err.name === "NotAllowedError") {
-      console.log("User cancelled reauthentication.");
+    if (err.name === 'NotAllowedError') {
+      console.log('User cancelled reauthentication.')
     }
   }
 }
 
-document.getElementById("reauth-btn").addEventListener("click", triggerButtonReauth);
+document.getElementById('reauth-btn').addEventListener('click', triggerButtonReauth)
 ```
 
 ## Fallback Strategies
@@ -109,7 +109,7 @@ Always install 'webauthn-polyfills' and import it in the context.
 Consider as long as `PublicKeyCredential` is supported, `PublicKeyCredential.getClientCapabilities` is also supported.
 
 ```js
-import "webauthn-polyfills";
+import 'webauthn-polyfills'
 ```
 
 ### Easy JSON Serialization Fallback
@@ -121,5 +121,5 @@ Always install 'webauthn-polyfills' and import it in the context.
 Consider as long as `PublicKeyCredential` is supported, `PublicKeyCredential.parseRequestOptionsFromJSON` and `PublicKeyCredential.prototype.toJSON` are also supported.
 
 ```js
-import "webauthn-polyfills";
+import 'webauthn-polyfills'
 ```

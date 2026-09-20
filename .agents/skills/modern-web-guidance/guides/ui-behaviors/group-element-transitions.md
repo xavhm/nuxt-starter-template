@@ -82,8 +82,8 @@ Wrap the DOM update in `document.startViewTransition()`. The browser will captur
 function updateList(newData) {
   document.startViewTransition(() => {
     // All DOM changes inside this callback will be transitioned
-    render(newData);
-  });
+    render(newData)
+  })
 }
 ```
 
@@ -116,10 +116,10 @@ View Transitions are a progressive enhancement. If the browser does not support 
 
 ```javascript
 if (document.startViewTransition) {
-  document.startViewTransition(() => updateDOM());
+  document.startViewTransition(() => updateDOM())
 } else {
   // Fallback: Perform the update without animation
-  updateDOM();
+  updateDOM()
 }
 ```
 

@@ -103,15 +103,15 @@ pnpm add @nuxt/ui tailwindcss
 ```ts
 // nuxt.config.ts
 export default defineNuxtConfig({
-  modules: ["@nuxt/ui"],
-  css: ["~/assets/css/main.css"],
-});
+  modules: ['@nuxt/ui'],
+  css: ['~/assets/css/main.css'],
+})
 ```
 
 ```css
 /* app/assets/css/main.css */
-@import "tailwindcss";
-@import "@nuxt/ui";
+@import 'tailwindcss';
+@import '@nuxt/ui';
 ```
 
 ```vue
@@ -131,38 +131,38 @@ pnpm add @nuxt/ui tailwindcss
 
 ```ts
 // vite.config.ts
-import { defineConfig } from "vite";
-import vue from "@vitejs/plugin-vue";
-import ui from "@nuxt/ui/vite";
+import { defineConfig } from 'vite'
+import vue from '@vitejs/plugin-vue'
+import ui from '@nuxt/ui/vite'
 
 export default defineConfig({
   plugins: [vue(), ui()],
-});
+})
 ```
 
 ```ts
 // src/main.ts
-import "./assets/css/main.css";
-import { createApp } from "vue";
-import { createRouter, createWebHistory } from "vue-router";
-import ui from "@nuxt/ui/vue-plugin";
-import App from "./App.vue";
+import './assets/css/main.css'
+import { createApp } from 'vue'
+import { createRouter, createWebHistory } from 'vue-router'
+import ui from '@nuxt/ui/vue-plugin'
+import App from './App.vue'
 
-const app = createApp(App);
+const app = createApp(App)
 const router = createRouter({
   routes: [],
   history: createWebHistory(),
-});
+})
 
-app.use(router);
-app.use(ui);
-app.mount("#app");
+app.use(router)
+app.use(ui)
+app.mount('#app')
 ```
 
 ```css
 /* src/assets/css/main.css */
-@import "tailwindcss";
-@import "@nuxt/ui";
+@import 'tailwindcss';
+@import '@nuxt/ui';
 ```
 
 ```vue

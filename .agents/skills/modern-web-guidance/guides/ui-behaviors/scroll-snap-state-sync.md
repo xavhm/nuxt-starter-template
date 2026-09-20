@@ -36,18 +36,18 @@ Use the `scrollsnapchange` event on the scroll container to react when the user 
 ```
 
 ```javascript
-const main = document.getElementById("main");
-const links = document.querySelectorAll("nav a");
+const main = document.getElementById('main')
+const links = document.querySelectorAll('nav a')
 
 // The event fires when the scroller settles on a new snap target
-main.addEventListener("scrollsnapchange", (event) => {
+main.addEventListener('scrollsnapchange', (event) => {
   // Use snapTargetBlock for vertical or snapTargetInline for horizontal
-  const snappedHeader = event.snapTargetBlock;
+  const snappedHeader = event.snapTargetBlock
 
   if (snappedHeader) {
-    setSelectedParagraph(snappedHeader.id);
+    setSelectedParagraph(snappedHeader.id)
   }
-});
+})
 ```
 
 ## Accessibility

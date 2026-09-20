@@ -106,28 +106,28 @@ If the hints are required, use an `IntersectionObserver` to toggle classes when 
 ```
 
 ```javascript
-if (!CSS.supports("container-type", "scroll-state")) {
-  const topSentinel = document.querySelector(".sentinel-top");
-  const bottomSentinel = document.querySelector(".sentinel-bottom");
-  const scroller = document.querySelector(".scroller");
+if (!CSS.supports('container-type', 'scroll-state')) {
+  const topSentinel = document.querySelector('.sentinel-top')
+  const bottomSentinel = document.querySelector('.sentinel-bottom')
+  const scroller = document.querySelector('.scroller')
 
   const observer = new IntersectionObserver(
     (entries) => {
       entries.forEach((entry) => {
         if (entry.target === topSentinel) {
           // If top sentinel is not intersecting, we have scrolled down
-          scroller.classList.toggle("scrolled-down", !entry.isIntersecting);
+          scroller.classList.toggle('scrolled-down', !entry.isIntersecting)
         }
         if (entry.target === bottomSentinel) {
           // If bottom sentinel is intersecting, we reached the bottom
-          scroller.classList.toggle("can-scroll-down", !entry.isIntersecting);
+          scroller.classList.toggle('can-scroll-down', !entry.isIntersecting)
         }
-      });
+      })
     },
     { root: scroller },
-  );
+  )
 
-  observer.observe(topSentinel);
-  observer.observe(bottomSentinel);
+  observer.observe(topSentinel)
+  observer.observe(bottomSentinel)
 }
 ```

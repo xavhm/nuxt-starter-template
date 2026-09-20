@@ -30,30 +30,30 @@ UApp
 
 ```vue [layouts/dashboard.vue]
 <script setup lang="ts">
-import type { NavigationMenuItem } from "@nuxt/ui";
+import type { NavigationMenuItem } from '@nuxt/ui'
 
 const items = computed<NavigationMenuItem[]>(() => [
   {
-    label: "Home",
-    icon: "i-lucide-house",
-    to: "/dashboard",
+    label: 'Home',
+    icon: 'i-lucide-house',
+    to: '/dashboard',
   },
   {
-    label: "Inbox",
-    icon: "i-lucide-inbox",
-    to: "/dashboard/inbox",
+    label: 'Inbox',
+    icon: 'i-lucide-inbox',
+    to: '/dashboard/inbox',
   },
   {
-    label: "Users",
-    icon: "i-lucide-users",
-    to: "/dashboard/users",
+    label: 'Users',
+    icon: 'i-lucide-users',
+    to: '/dashboard/users',
   },
   {
-    label: "Settings",
-    icon: "i-lucide-settings",
-    to: "/dashboard/settings",
+    label: 'Settings',
+    icon: 'i-lucide-settings',
+    to: '/dashboard/settings',
   },
-]);
+])
 </script>
 
 <template>
@@ -87,7 +87,7 @@ const items = computed<NavigationMenuItem[]>(() => [
 
 ```vue [pages/dashboard/index.vue]
 <script setup lang="ts">
-definePageMeta({ layout: "dashboard" });
+definePageMeta({ layout: 'dashboard' })
 </script>
 
 <template>
@@ -157,7 +157,7 @@ Always pass `:collapsed="collapsed"` to `UNavigationMenu` inside a collapsible s
 
 ```vue [pages/dashboard/inbox.vue]
 <script setup lang="ts">
-definePageMeta({ layout: "dashboard" });
+definePageMeta({ layout: 'dashboard' })
 </script>
 
 <template>

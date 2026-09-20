@@ -6,50 +6,50 @@
 
 ```vue [pages/login.vue]
 <script setup lang="ts">
-import * as z from "zod";
-import type { FormSubmitEvent, AuthFormField } from "@nuxt/ui";
+import * as z from 'zod'
+import type { FormSubmitEvent, AuthFormField } from '@nuxt/ui'
 
 const fields: AuthFormField[] = [
   {
-    name: "email",
-    type: "email",
-    label: "Email",
-    placeholder: "Enter your email",
+    name: 'email',
+    type: 'email',
+    label: 'Email',
+    placeholder: 'Enter your email',
     required: true,
   },
   {
-    name: "password",
-    label: "Password",
-    type: "password",
-    placeholder: "Enter your password",
+    name: 'password',
+    label: 'Password',
+    type: 'password',
+    placeholder: 'Enter your password',
     required: true,
   },
   {
-    name: "remember",
-    label: "Remember me",
-    type: "checkbox",
+    name: 'remember',
+    label: 'Remember me',
+    type: 'checkbox',
   },
-];
+]
 
 const providers = [
   {
-    label: "Google",
-    icon: "i-simple-icons-google",
-    onClick: () => navigateTo("/auth/google", { external: true }),
+    label: 'Google',
+    icon: 'i-simple-icons-google',
+    onClick: () => navigateTo('/auth/google', { external: true }),
   },
   {
-    label: "GitHub",
-    icon: "i-simple-icons-github",
-    onClick: () => navigateTo("/auth/github", { external: true }),
+    label: 'GitHub',
+    icon: 'i-simple-icons-github',
+    onClick: () => navigateTo('/auth/github', { external: true }),
   },
-];
+]
 
 const schema = z.object({
-  email: z.email("Invalid email"),
-  password: z.string("Password is required").min(8, "Must be at least 8 characters"),
-});
+  email: z.email('Invalid email'),
+  password: z.string('Password is required').min(8, 'Must be at least 8 characters'),
+})
 
-type Schema = z.output<typeof schema>;
+type Schema = z.output<typeof schema>
 
 function onSubmit(payload: FormSubmitEvent<Schema>) {
   // payload.data contains validated fields
@@ -108,16 +108,16 @@ For layouts where `UAuthForm` is too opinionated, use `UCard` + `UForm` + `UForm
 
 ```vue [pages/login.vue]
 <script setup lang="ts">
-import * as z from "zod";
-import type { FormSubmitEvent } from "@nuxt/ui";
+import * as z from 'zod'
+import type { FormSubmitEvent } from '@nuxt/ui'
 
 const schema = z.object({
-  email: z.email("Invalid email"),
-  password: z.string().min(1, "Password is required"),
-});
+  email: z.email('Invalid email'),
+  password: z.string().min(1, 'Password is required'),
+})
 
-type Schema = z.output<typeof schema>;
-const state = reactive<Partial<Schema>>({ email: "", password: "" });
+type Schema = z.output<typeof schema>
+const state = reactive<Partial<Schema>>({ email: '', password: '' })
 
 async function onSubmit(event: FormSubmitEvent<Schema>) {
   // event.data contains validated fields

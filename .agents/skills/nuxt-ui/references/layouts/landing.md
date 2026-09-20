@@ -13,22 +13,22 @@ Build public-facing pages — landing, blog, changelog, pricing — using the He
 
 ```vue [app.vue]
 <script setup lang="ts">
-import type { NavigationMenuItem } from "@nuxt/ui";
+import type { NavigationMenuItem } from '@nuxt/ui'
 
 const items = computed<NavigationMenuItem[]>(() => [
   {
-    label: "Features",
-    to: "#features",
+    label: 'Features',
+    to: '#features',
   },
   {
-    label: "Pricing",
-    to: "/pricing",
+    label: 'Pricing',
+    to: '/pricing',
   },
   {
-    label: "Blog",
-    to: "/blog",
+    label: 'Blog',
+    to: '/blog',
   },
-]);
+])
 </script>
 
 <template>
@@ -198,7 +198,7 @@ const items = computed<NavigationMenuItem[]>(() => [
 
 ```vue [pages/blog/index.vue]
 <script setup lang="ts">
-const { data: posts } = await useAsyncData("posts", () => queryCollection("posts").all());
+const { data: posts } = await useAsyncData('posts', () => queryCollection('posts').all())
 </script>
 
 <template>
@@ -219,7 +219,7 @@ const { data: posts } = await useAsyncData("posts", () => queryCollection("posts
 
 ```vue [pages/changelog.vue]
 <script setup lang="ts">
-const { data: versions } = await useAsyncData("versions", () => queryCollection("changelog").all());
+const { data: versions } = await useAsyncData('versions', () => queryCollection('changelog').all())
 </script>
 
 <template>

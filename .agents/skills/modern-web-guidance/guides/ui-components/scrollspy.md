@@ -57,17 +57,17 @@ nav a:target-current {
 </main>
 
 <script type="module">
-  if (CSS.supports("scroll-target-group: auto")) {
+  if (CSS.supports('scroll-target-group: auto')) {
     const syncAriaCurrent = () => {
-      const currentLink = document.querySelector("nav a:target-current");
-      document.querySelectorAll("nav a").forEach((link) => {
-        link.setAttribute("aria-current", link === currentLink ? "true" : "false");
-      });
-    };
+      const currentLink = document.querySelector('nav a:target-current')
+      document.querySelectorAll('nav a').forEach((link) => {
+        link.setAttribute('aria-current', link === currentLink ? 'true' : 'false')
+      })
+    }
     // Update the aria on initial page load. Ensure the DOM content is loaded, either by using `<script type="module">` or an event listener for `DOMContentLoaded`.
-    syncAriaCurrent();
+    syncAriaCurrent()
     // Update the aria after scroll ends
-    document.addEventListener("scrollend", syncAriaCurrent);
+    document.addEventListener('scrollend', syncAriaCurrent)
   }
 </script>
 ```
@@ -91,30 +91,30 @@ For browsers that do not support `scroll-target-group`, you should use a fallbac
 ```html
 <script>
   // Feature detection for scroll-target-group
-  const supportsScrollTargetGroup = CSS.supports("scroll-target-group: auto");
+  const supportsScrollTargetGroup = CSS.supports('scroll-target-group: auto')
 
   if (!supportsScrollTargetGroup) {
-    const navLinks = document.querySelectorAll("nav a");
-    const sections = document.querySelectorAll("main section");
+    const navLinks = document.querySelectorAll('nav a')
+    const sections = document.querySelectorAll('main section')
 
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
-            const id = entry.target.getAttribute("id");
+            const id = entry.target.getAttribute('id')
             navLinks.forEach((link) => {
-              const isActive = link.getAttribute("href") === `#${id}`;
+              const isActive = link.getAttribute('href') === `#${id}`
               // Use the escaped colon class for consistent styling
-              link.classList.toggle("\:target-current", isActive);
-              link.setAttribute("aria-current", isActive);
-            });
+              link.classList.toggle('\:target-current', isActive)
+              link.setAttribute('aria-current', isActive)
+            })
           }
-        });
+        })
       },
-      { rootMargin: "-50% 0px -50% 0px", threshold: 0 },
-    );
+      { rootMargin: '-50% 0px -50% 0px', threshold: 0 },
+    )
 
-    sections.forEach((section) => observer.observe(section));
+    sections.forEach((section) => observer.observe(section))
   }
 </script>
 

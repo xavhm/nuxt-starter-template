@@ -63,7 +63,7 @@ If a browser does not support `mask-image` or the prefixed version:
   }
 
   .container::after {
-    content: "";
+    content: '';
     position: absolute;
     bottom: 0;
     left: 0;

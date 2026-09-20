@@ -9,7 +9,7 @@ Create the underline using a `::before` pseudo-element on the `<ul>` that contai
 ```css
 ul::before {
   /* Use a pseudo-element on the container to represent the animated indicator */
-  content: "";
+  content: '';
 }
 ```
 

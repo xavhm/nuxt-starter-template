@@ -50,37 +50,37 @@ Add an event listener for `contentvisibilityautostatechange` to pause or resume 
 > - Use a capturing event listener (`{ capture: true }`) if you are delegating events to a parent container.
 
 ```javascript
-const component = document.querySelector(".heavy-component");
+const component = document.querySelector('.heavy-component')
 
 // Option 1: Direct listener (recommended)
-component.addEventListener("contentvisibilityautostatechange", (event) => {
+component.addEventListener('contentvisibilityautostatechange', (event) => {
   if (event.skipped) {
     // The browser skipped rendering this content.
     // DO NOT perform heavy mutations or animation loops here.
-    stopSimulation();
-    pauseWebSocketPolling();
+    stopSimulation()
+    pauseWebSocketPolling()
   } else {
     // The browser is about to render the content.
     // Resume your work so it is ready when visible.
-    startSimulation();
-    resumeWebSocketPolling();
+    startSimulation()
+    resumeWebSocketPolling()
   }
-});
+})
 
 // Option 2: Capturing listener for event delegation
 document.addEventListener(
-  "contentvisibilityautostatechange",
+  'contentvisibilityautostatechange',
   (event) => {
-    if (event.target.matches(".heavy-component")) {
+    if (event.target.matches('.heavy-component')) {
       if (event.skipped) {
-        stopSimulation();
+        stopSimulation()
       } else {
-        startSimulation();
+        startSimulation()
       }
     }
   },
   { capture: true },
-);
+)
 ```
 
 ### Fallback strategies
@@ -97,10 +97,10 @@ If you must support pausing tasks on older browsers, you can fallback to using `
 
 ```javascript
 // Fallback using IntersectionObserver for older browsers
-const target = document.getElementById("target-container");
+const target = document.getElementById('target-container')
 
 // Check if content-visibility is supported
-const isSupported = "contentVisibility" in document.documentElement.style;
+const isSupported = 'contentVisibility' in document.documentElement.style
 
 if (!isSupported) {
   const observer = new IntersectionObserver(
@@ -108,19 +108,19 @@ if (!isSupported) {
       entries.forEach((entry) => {
         if (entry.isIntersecting) {
           // The element is close to the screen. Start work!
-          startSimulation();
+          startSimulation()
         } else {
           // The element is far away. Pause work!
-          stopSimulation();
+          stopSimulation()
         }
-      });
+      })
     },
     {
       // Use rootMargin to start rendering before it hits the screen
-      rootMargin: "200px",
+      rootMargin: '200px',
     },
-  );
+  )
 
-  observer.observe(target);
+  observer.observe(target)
 }
 ```

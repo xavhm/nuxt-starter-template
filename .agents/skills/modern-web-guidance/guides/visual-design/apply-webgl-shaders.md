@@ -27,20 +27,20 @@ if ('requestPaint' in HTMLCanvasElement.prototype) {
 
 ```js
 const observer = new ResizeObserver(([entry]) => {
-  const dpc = entry.devicePixelContentBoxSize;
+  const dpc = entry.devicePixelContentBoxSize
   canvas.width = dpc
     ? dpc[0].inlineSize
-    : Math.round(entry.contentRect.width * window.devicePixelRatio);
+    : Math.round(entry.contentRect.width * window.devicePixelRatio)
   canvas.height = dpc
     ? dpc[0].blockSize
-    : Math.round(entry.contentRect.height * window.devicePixelRatio);
-});
+    : Math.round(entry.contentRect.height * window.devicePixelRatio)
+})
 
 const supportsDevicePixelContentBox =
-  typeof ResizeObserverEntry !== "undefined" &&
-  "devicePixelContentBoxSize" in ResizeObserverEntry.prototype;
-const options = supportsDevicePixelContentBox ? { box: "device-pixel-content-box" } : {};
-observer.observe(canvas, options);
+  typeof ResizeObserverEntry !== 'undefined' &&
+  'devicePixelContentBoxSize' in ResizeObserverEntry.prototype
+const options = supportsDevicePixelContentBox ? { box: 'device-pixel-content-box' } : {}
+observer.observe(canvas, options)
 ```
 
 5. Render the HTML content to the canvas inside a `canvas.onpaint` event handler using the `texElementImage2D` method:
@@ -49,12 +49,12 @@ observer.observe(canvas, options);
 canvas.onpaint = () => {
   if (gl.texElementImage2D) {
     try {
-      gl.texElementImage2D(gl.TEXTURE_2D, gl.RGBA8, uiElement);
+      gl.texElementImage2D(gl.TEXTURE_2D, gl.RGBA8, uiElement)
     } catch (err) {
-      console.error("texElementImage2D copy failed:", err);
+      console.error('texElementImage2D copy failed:', err)
     }
   }
-};
+}
 ```
 
 When using a `requestAnimationFrame` loop to render the scene, call `canvas.requestPaint()` within the loop to ensure that the HTML content is rendered to the canvas. Make sure you only re-render the canvas if there has been an update to the descendant HTML elements:
@@ -62,16 +62,16 @@ When using a `requestAnimationFrame` loop to render the scene, call `canvas.requ
 ```js
 function render() {
   // Request to update the canvas
-  canvas.requestPaint();
-  requestAnimationFrame(render);
+  canvas.requestPaint()
+  requestAnimationFrame(render)
 }
-requestAnimationFrame(render);
+requestAnimationFrame(render)
 
 canvas.onpaint = (event) => {
   if (event.changedElements && event.changedElements.length > 0) {
     // Update the texture with texElementImage2D, and update the CSS transform as shown in step 6
   }
-};
+}
 ```
 
 6. Update the CSS transform.
@@ -87,33 +87,33 @@ The browser needs to map from the 3D coordinate space into the CSS coordinate sp
 ```js
 if (canvas.getElementTransform) {
   // 1. Convert WebGL MVP Matrix to DOM Matrix
-  const mvpDOM = new DOMMatrix(Array.from(htmlElementMVP));
+  const mvpDOM = new DOMMatrix(Array.from(htmlElementMVP))
 
   // 2. Normalize the HTML element (Canvas Grid pixels -> WebGL Model Space)
-  const dprX = canvas.width / canvas.clientWidth;
-  const dprY = canvas.height / canvas.clientHeight;
-  const gridWidth = targetHTMLElement.offsetWidth * dprX;
-  const gridHeight = targetHTMLElement.offsetHeight * dprY;
+  const dprX = canvas.width / canvas.clientWidth
+  const dprY = canvas.height / canvas.clientHeight
+  const gridWidth = targetHTMLElement.offsetWidth * dprX
+  const gridHeight = targetHTMLElement.offsetHeight * dprY
 
   const toGLModel = new DOMMatrix()
     // Scale pixels to 1 unit, flip Y (as in CSS it points down, and in WebGL it points up)
     .scale(1 / gridWidth, -1 / gridHeight, 1 / gridHeight)
     // Center the origin: (0,0) becomes (-width/2, -height/2) before scaling
-    .translate(-gridWidth / 2, -gridHeight / 2);
+    .translate(-gridWidth / 2, -gridHeight / 2)
 
   // 3. Map to the canvas viewport
   const clipToCanvasViewport = new DOMMatrix()
     // Move center (0,0) to center of canvas
     .translate(canvas.width / 2, canvas.height / 2)
     // Scale normalized clip (-1..1) to viewport size
-    .scale(canvas.width / 2, -canvas.height / 2, canvas.height / 2);
+    .scale(canvas.width / 2, -canvas.height / 2, canvas.height / 2)
 
   // 4. Multiply: (Clip -> Pixels) * (MVP) * (pixels -> unit square)
-  const screenSpaceTransform = clipToCanvasViewport.multiply(mvpDOM).multiply(toGLModel);
+  const screenSpaceTransform = clipToCanvasViewport.multiply(mvpDOM).multiply(toGLModel)
 
   // 5. Apply to the transform
-  const computedTransform = canvas.getElementTransform(targetHTMLElement, screenSpaceTransform);
-  targetHTMLElement.style.transform = computedTransform.toString();
+  const computedTransform = canvas.getElementTransform(targetHTMLElement, screenSpaceTransform)
+  targetHTMLElement.style.transform = computedTransform.toString()
 }
 ```
 
@@ -125,9 +125,9 @@ if (transform.is2D) {
   // affecting Chrome versions under 149 where `transform.is2D`
   // is incorrectly true for a 3D DOMMatrix. The assignment
   // below re-initializes the DOMMatrix which corrects is2D to be false.
-  transform = DOMMatrix.fromFloat64Array(transform.toFloat64Array());
+  transform = DOMMatrix.fromFloat64Array(transform.toFloat64Array())
 }
-targetHTMLElement.style.transform = computedTransform.toString();
+targetHTMLElement.style.transform = computedTransform.toString()
 ```
 
 ## Example code
@@ -141,21 +141,21 @@ targetHTMLElement.style.transform = computedTransform.toString();
 </canvas>
 
 <script>
-  const canvas = document.getElementById("canvas");
-  const gl = canvas.getContext("webgl");
-  const uiElement = document.getElementById("ui-element");
+  const canvas = document.getElementById('canvas')
+  const gl = canvas.getContext('webgl')
+  const uiElement = document.getElementById('ui-element')
 
   // Setup WebGL texture...
-  const texture = gl.createTexture();
-  gl.bindTexture(gl.TEXTURE_2D, texture);
+  const texture = gl.createTexture()
+  gl.bindTexture(gl.TEXTURE_2D, texture)
 
   canvas.onpaint = () => {
     // 1. Update texture with HTML content
     if (gl.texElementImage2D) {
       try {
-        gl.texElementImage2D(gl.TEXTURE_2D, gl.RGBA8, uiElement);
+        gl.texElementImage2D(gl.TEXTURE_2D, gl.RGBA8, uiElement)
       } catch (err) {
-        console.error("texElementImage2D copy failed:", err);
+        console.error('texElementImage2D copy failed:', err)
       }
     }
 
@@ -163,28 +163,28 @@ targetHTMLElement.style.transform = computedTransform.toString();
 
     // 2. Sync DOM position with 3D scene
     if (canvas.getElementTransform) {
-      const mvpDOM = new DOMMatrix(Array.from(htmlElementMVP));
+      const mvpDOM = new DOMMatrix(Array.from(htmlElementMVP))
 
       // Recalculate the DPR compensation mapping
-      const dprX = canvas.width / canvas.clientWidth;
-      const dprY = canvas.height / canvas.clientHeight;
-      const gridWidth = uiElement.offsetWidth * dprX;
-      const gridHeight = uiElement.offsetHeight * dprY;
+      const dprX = canvas.width / canvas.clientWidth
+      const dprY = canvas.height / canvas.clientHeight
+      const gridWidth = uiElement.offsetWidth * dprX
+      const gridHeight = uiElement.offsetHeight * dprY
 
       const cssToUnitSpace = new DOMMatrix()
         .scale(1 / gridWidth, -1 / gridHeight, 1 / gridHeight)
-        .translate(-gridWidth / 2, -gridHeight / 2);
+        .translate(-gridWidth / 2, -gridHeight / 2)
 
       const clipToCanvasViewport = new DOMMatrix()
         .translate(canvas.width / 2, canvas.height / 2)
-        .scale(canvas.width / 2, -canvas.height / 2, canvas.height / 2);
+        .scale(canvas.width / 2, -canvas.height / 2, canvas.height / 2)
 
-      const screenSpaceTransform = clipToCanvasViewport.multiply(mvpDOM).multiply(cssToUnitSpace);
+      const screenSpaceTransform = clipToCanvasViewport.multiply(mvpDOM).multiply(cssToUnitSpace)
 
-      const computedTransform = canvas.getElementTransform(uiElement, screenSpaceTransform);
-      uiElement.style.transform = computedTransform.toString();
+      const computedTransform = canvas.getElementTransform(uiElement, screenSpaceTransform)
+      uiElement.style.transform = computedTransform.toString()
     }
-  };
+  }
 </script>
 ```
 

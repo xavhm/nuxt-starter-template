@@ -73,8 +73,8 @@ With a bundler or import map:
 
 ```js
 // MANDATORY: Feature detect 'popover' on HTMLElement.prototype.
-if (!("popover" in HTMLElement.prototype)) {
-  import("@oddbird/popover-polyfill");
+if (!('popover' in HTMLElement.prototype)) {
+  import('@oddbird/popover-polyfill')
 }
 ```
 
@@ -82,8 +82,8 @@ Without a bundler, import from a CDN inside a `<script type="module">`:
 
 ```html
 <script type="module">
-  if (!("popover" in HTMLElement.prototype)) {
-    import("https://unpkg.com/@oddbird/popover-polyfill@latest/dist/popover.min.js");
+  if (!('popover' in HTMLElement.prototype)) {
+    import('https://unpkg.com/@oddbird/popover-polyfill@latest/dist/popover.min.js')
   }
 </script>
 ```
@@ -107,8 +107,8 @@ For some use cases, you may be able to use the `@oddbird/css-anchor-positioning`
 ```html
 <!-- MANDATORY: Conditionally install the anchor positioning polyfill -->
 <script type="module">
-  if (!("anchorName" in document.documentElement.style)) {
-    await import("https://unpkg.com/@oddbird/css-anchor-positioning");
+  if (!('anchorName' in document.documentElement.style)) {
+    await import('https://unpkg.com/@oddbird/css-anchor-positioning')
   }
 </script>
 ```

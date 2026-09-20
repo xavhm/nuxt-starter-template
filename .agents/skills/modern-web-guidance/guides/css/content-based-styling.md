@@ -109,15 +109,15 @@ If server-side rendering is not an option, you must use a small script with `CSS
 ```javascript
 /* Fallback JavaScript for older browsers (if not using SSR to add the class) */
 /* Check for support before running the script to avoid unnecessary work in modern browsers */
-if (!CSS.supports("selector(:has(*))")) {
+if (!CSS.supports('selector(:has(*))')) {
   // Find all components that need checking
-  const cards = document.querySelectorAll(".article-card");
+  const cards = document.querySelectorAll('.article-card')
 
   cards.forEach((card) => {
     // If the critical content exists, manually add the fallback class
-    if (card.querySelector("img")) {
-      card.classList.add("has-image");
+    if (card.querySelector('img')) {
+      card.classList.add('has-image')
     }
-  });
+  })
 }
 ```

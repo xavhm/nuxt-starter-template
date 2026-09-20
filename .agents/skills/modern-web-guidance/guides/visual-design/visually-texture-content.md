@@ -15,12 +15,12 @@ This is the most common method for realistic textures.
 ```css
 .weathered-element {
   /* MANDATORY: Use vendor prefix for wider support in older browsers */
-  -webkit-mask-image: url("grunge-pattern.png");
+  -webkit-mask-image: url('grunge-pattern.png');
   -webkit-mask-repeat: repeat; /* Repeat the pattern to fill the area */
   -webkit-mask-size: 300px; /* Control the scale of the texture */
 
   /* Standard property for modern browsers */
-  mask-image: url("grunge-pattern.png");
+  mask-image: url('grunge-pattern.png');
   mask-repeat: repeat;
   mask-size: 300px;
 }
@@ -85,7 +85,7 @@ If a browser does not support `mask-image` or the prefixed version:
 @supports (not (mask-image: url(x))) and (not (-webkit-mask-image: url(x))) {
   .weathered-element {
     /* Fallback adds texture on top or behind, depending on implementation */
-    background-image: url("grunge-pattern.svg");
+    background-image: url('grunge-pattern.svg');
     background-color: #fff; /* Ensure background is solid if needed */
   }
 }

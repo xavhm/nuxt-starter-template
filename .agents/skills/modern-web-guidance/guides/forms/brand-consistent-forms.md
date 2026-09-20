@@ -98,7 +98,7 @@ Apply custom styles within a `@supports not` block:
 /* Fallback for older browsers without accent-color */
 @supports not (accent-color: var(--brand-color)) {
   /* Visually hide the native input using the canonical accessible recipe */
-  form input[type="checkbox"].visually-hidden {
+  form input[type='checkbox'].visually-hidden {
     position: absolute !important;
     clip-path: inset(50%) !important;
     overflow: hidden !important;
@@ -120,8 +120,8 @@ Apply custom styles within a `@supports not` block:
   }
 
   /* Custom box for checkbox */
-  input[type="checkbox"] + span::before {
-    content: "";
+  input[type='checkbox'] + span::before {
+    content: '';
     position: absolute;
     left: 0;
     top: 50%;
@@ -136,20 +136,20 @@ Apply custom styles within a `@supports not` block:
   }
 
   /* Ensure custom checkbox shows focus for keyboard users */
-  input[type="checkbox"]:focus-visible + span::before {
+  input[type='checkbox']:focus-visible + span::before {
     outline: 2px solid #000;
     outline-offset: 2px;
   }
 
   /* Checked State */
-  input[type="checkbox"]:checked + span::before {
+  input[type='checkbox']:checked + span::before {
     background-color: var(--brand-color, #6200ee);
     border-color: var(--brand-color, #6200ee);
   }
 
   /* Checkmark (Unicode) */
-  input[type="checkbox"]:checked + span::after {
-    content: "✓";
+  input[type='checkbox']:checked + span::after {
+    content: '✓';
     position: absolute;
     left: 0.25rem;
     top: 50%;
@@ -160,14 +160,14 @@ Apply custom styles within a `@supports not` block:
   }
 
   /* Fallback for Range Slider */
-  input[type="range"] {
+  input[type='range'] {
     -webkit-appearance: none;
     appearance: none;
     background: transparent;
   }
 
   /* Webkit (Chrome, Safari, Edge) */
-  input[type="range"]::-webkit-slider-runnable-track {
+  input[type='range']::-webkit-slider-runnable-track {
     width: 100%;
     height: 8px;
     /* Use gradient to show progress for a static value (e.g., 70%) or update with JS */
@@ -175,7 +175,7 @@ Apply custom styles within a `@supports not` block:
     border-radius: 4px;
   }
 
-  input[type="range"]::-webkit-slider-thumb {
+  input[type='range']::-webkit-slider-thumb {
     -webkit-appearance: none;
     appearance: none;
     height: 16px;
@@ -187,14 +187,14 @@ Apply custom styles within a `@supports not` block:
   }
 
   /* Firefox */
-  input[type="range"]::-moz-range-track {
+  input[type='range']::-moz-range-track {
     width: 100%;
     height: 8px;
     background: #ccc;
     border-radius: 4px;
   }
 
-  input[type="range"]::-moz-range-thumb {
+  input[type='range']::-moz-range-thumb {
     height: 16px;
     width: 16px;
     border-radius: 50%;
@@ -203,7 +203,7 @@ Apply custom styles within a `@supports not` block:
   }
 
   /* Firefox specific progress bar */
-  input[type="range"]::-moz-range-progress {
+  input[type='range']::-moz-range-progress {
     background-color: var(--brand-color, #6200ee);
     height: 8px;
     border-radius: 4px;
@@ -244,7 +244,7 @@ To make the progress fill move with the thumb on a range slider in Webkit browse
 1. **Update CSS**: Use a CSS variable for the gradient stop:
 
 ```css
-input[type="range"]::-webkit-slider-runnable-track {
+input[type='range']::-webkit-slider-runnable-track {
   background: linear-gradient(
     to right,
     var(--brand-color) var(--progress, 0%),
@@ -256,10 +256,10 @@ input[type="range"]::-webkit-slider-runnable-track {
 2. **Add JavaScript**: Update the variable on the `input` event:
 
 ```javascript
-if (!CSS.supports("accent-color")) {
-  const slider = document.getElementById("volume");
-  slider.addEventListener("input", (e) => {
-    e.target.style.setProperty("--progress", `${e.target.value}%`);
-  });
+if (!CSS.supports('accent-color')) {
+  const slider = document.getElementById('volume')
+  slider.addEventListener('input', (e) => {
+    e.target.style.setProperty('--progress', `${e.target.value}%`)
+  })
 }
 ```

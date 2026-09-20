@@ -46,18 +46,18 @@ When swapping views, ensure you manage keyboard focus correctly to preserve acce
 ```javascript
 function switchToView(viewId) {
   // Hide all views
-  document.querySelectorAll(".spa-view").forEach((view) => {
-    view.classList.add("inactive");
-    view.setAttribute("aria-hidden", "true");
-  });
+  document.querySelectorAll('.spa-view').forEach((view) => {
+    view.classList.add('inactive')
+    view.setAttribute('aria-hidden', 'true')
+  })
 
   // Show the target view
-  const activeView = document.getElementById(viewId);
-  activeView.classList.remove("inactive");
-  activeView.setAttribute("aria-hidden", "false");
+  const activeView = document.getElementById(viewId)
+  activeView.classList.remove('inactive')
+  activeView.setAttribute('aria-hidden', 'false')
 
   // MANDATORY: Move focus to the new view to ensure a logical tab-order
-  activeView.focus();
+  activeView.focus()
 }
 ```
 

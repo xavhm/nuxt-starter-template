@@ -50,12 +50,12 @@ Ensure that interactions occurring inside the column benefit from the containmen
 ```javascript
 // Example: Drag and drop item movement
 function moveItemToColumn(itemId, columnId) {
-  const item = document.getElementById(itemId);
-  const column = document.getElementById(columnId);
+  const item = document.getElementById(itemId)
+  const column = document.getElementById(columnId)
 
   // The browser will only reflow this specific column,
   // not the entire board layout!
-  column.appendChild(item);
+  column.appendChild(item)
 }
 ```
 

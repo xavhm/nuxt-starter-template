@@ -108,19 +108,19 @@ For this use-case specifically, the following script applies the fallback for br
 
 ```js
 // Fallback for browsers that don't support scroll-driven animations
-if (!CSS.supports("(animation-timeline: scroll()) and (animation-range: 0% 100%)")) {
-  const header = document.querySelector("header");
+if (!CSS.supports('(animation-timeline: scroll()) and (animation-range: 0% 100%)')) {
+  const header = document.querySelector('header')
 
-  const initialHeight = 200;
-  const finalHeight = 50;
-  const scrollDistance = 150;
+  const initialHeight = 200
+  const finalHeight = 50
+  const scrollDistance = 150
 
-  window.addEventListener("scroll", () => {
-    const scrollY = window.scrollY;
-    const scrollPercent = Math.min(1, scrollY / scrollDistance);
-    const newHeight = initialHeight - (initialHeight - finalHeight) * scrollPercent;
+  window.addEventListener('scroll', () => {
+    const scrollY = window.scrollY
+    const scrollPercent = Math.min(1, scrollY / scrollDistance)
+    const newHeight = initialHeight - (initialHeight - finalHeight) * scrollPercent
 
-    header.style.height = `${newHeight}px`;
-  });
+    header.style.height = `${newHeight}px`
+  })
 }
 ```

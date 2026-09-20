@@ -27,28 +27,28 @@ Check if the model is ready, needs downloading, or is unavailable.
 
 ```javascript
 const options = {
-  type: "key-points",
-  format: "plain-text",
-  length: "medium",
-};
+  type: 'key-points',
+  format: 'plain-text',
+  length: 'medium',
+}
 
-const availability = await Summarizer.availability(options);
+const availability = await Summarizer.availability(options)
 
-if (availability === "available") {
-  const summarizer = await Summarizer.create(options);
+if (availability === 'available') {
+  const summarizer = await Summarizer.create(options)
   // Ready to use immediately
-} else if (availability === "downloadable") {
+} else if (availability === 'downloadable') {
   // A user gesture is strictly required to start the download
-  document.getElementById("start-download-btn").addEventListener("click", async () => {
+  document.getElementById('start-download-btn').addEventListener('click', async () => {
     const summarizer = await Summarizer.create({
       ...options,
       monitor(m) {
-        m.addEventListener("downloadprogress", (e) => {
-          console.log(`Downloaded ${Math.round((e.loaded / e.total) * 100)}%`);
-        });
+        m.addEventListener('downloadprogress', (e) => {
+          console.log(`Downloaded ${Math.round((e.loaded / e.total) * 100)}%`)
+        })
       },
-    });
-  });
+    })
+  })
 }
 ```
 
@@ -68,14 +68,14 @@ the output:
 
 ```javascript
 const options = {
-  sharedContext: "This is a scientific article",
-  type: "key-points",
-  format: "markdown",
-  length: "medium",
-};
+  sharedContext: 'This is a scientific article',
+  type: 'key-points',
+  format: 'markdown',
+  length: 'medium',
+}
 
 if (navigator.userActivation.isActive) {
-  const summarizer = await Summarizer.create(options);
+  const summarizer = await Summarizer.create(options)
 }
 ```
 
@@ -86,10 +86,10 @@ summary request.
 
 ```javascript
 const summarizer = await Summarizer.create({
-  type: "key-points",
-  expectedInputLanguages: ["en", "ja"],
-  outputLanguage: "es",
-});
+  type: 'key-points',
+  expectedInputLanguages: ['en', 'ja'],
+  outputLanguage: 'es',
+})
 ```
 
 ## Summarization Methods
@@ -99,11 +99,11 @@ const summarizer = await Summarizer.create({
 Processes the entire text at once and returns the result.
 
 ```javascript
-const longText = document.querySelector("article").innerText;
+const longText = document.querySelector('article').innerText
 const summary = await summarizer.summarize(longText, {
-  context: "This article is intended for a tech-savvy audience.",
-});
-console.log(summary);
+  context: 'This article is intended for a tech-savvy audience.',
+})
+console.log(summary)
 ```
 
 ### 2. Stream Summarization
@@ -112,9 +112,9 @@ Returns results in real-time as the model generates them, providing a more
 responsive UI.
 
 ```javascript
-const stream = summarizer.summarizeStreaming(longText);
+const stream = summarizer.summarizeStreaming(longText)
 for await (const chunk of stream) {
-  console.log(chunk);
+  console.log(chunk)
 }
 ```
 
@@ -138,7 +138,7 @@ Unsupported in: Firefox and Safari.
 Before initializing or querying availability, check if the browser supports the `Summarizer` API:
 
 ```javascript
-if ("Summarizer" in self) {
+if ('Summarizer' in self) {
   // The Summarizer API is supported.
 } else {
   // Execute fallback strategy

@@ -155,9 +155,9 @@ Page shell: `<main class="page-layout">` contains `<header>`, `<aside>`, a `<sec
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   grid-template-areas:
-    "header  header  header"
-    "sidebar main    main"
-    "footer  footer  footer";
+    'header  header  header'
+    'sidebar main    main'
+    'footer  footer  footer';
   gap: 1.5rem;
 }
 

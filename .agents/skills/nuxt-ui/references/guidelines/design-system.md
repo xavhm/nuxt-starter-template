@@ -29,23 +29,23 @@ Nuxt UI uses 7 semantic colors. Never use raw Tailwind palette colors in compone
 export default defineAppConfig({
   ui: {
     colors: {
-      primary: "indigo",
-      secondary: "violet",
-      success: "emerald",
-      error: "rose",
-      neutral: "zinc",
+      primary: 'indigo',
+      secondary: 'violet',
+      success: 'emerald',
+      error: 'rose',
+      neutral: 'zinc',
     },
   },
-});
+})
 ```
 
 ```ts
 // Vue — vite.config.ts
 ui({
   ui: {
-    colors: { primary: "indigo", secondary: "violet", neutral: "zinc" },
+    colors: { primary: 'indigo', secondary: 'violet', neutral: 'zinc' },
   },
-});
+})
 ```
 
 Only colors that exist in your theme work — either Tailwind's defaults or custom colors defined with `@theme`.
@@ -96,10 +96,10 @@ To add a color beyond the 7 defaults (e.g., `tertiary`), register it in `theme.c
 export default defineNuxtConfig({
   ui: {
     theme: {
-      colors: ["primary", "secondary", "tertiary", "info", "success", "warning", "error"],
+      colors: ['primary', 'secondary', 'tertiary', 'info', 'success', 'warning', 'error'],
     },
   },
-});
+})
 ```
 
 ## Semantic utility classes
@@ -193,22 +193,22 @@ export default defineAppConfig({
   ui: {
     button: {
       slots: {
-        base: "font-bold",
+        base: 'font-bold',
       },
       compoundVariants: [
         {
-          color: "neutral",
-          variant: "outline",
-          class: "ring-default hover:bg-accented",
+          color: 'neutral',
+          variant: 'outline',
+          class: 'ring-default hover:bg-accented',
         },
       ],
       defaultVariants: {
-        color: "neutral",
-        variant: "outline",
+        color: 'neutral',
+        variant: 'outline',
       },
     },
   },
-});
+})
 ```
 
 Tailwind Variants uses `tailwind-merge` under the hood — conflicting classes are resolved automatically.
@@ -229,11 +229,11 @@ export default defineAppConfig({
   ui: {
     button: {
       slots: {
-        label: () => "text-base font-bold",
+        label: () => 'text-base font-bold',
       },
     },
   },
-});
+})
 ```
 
 ### Theme component
@@ -257,12 +257,12 @@ export default defineNuxtConfig({
   ui: {
     theme: {
       defaultVariants: {
-        size: "lg",
-        color: "neutral",
+        size: 'lg',
+        color: 'neutral',
       },
     },
   },
-});
+})
 ```
 
 ### `theme.transitions`
@@ -277,7 +277,7 @@ export default defineNuxtConfig({
       transitions: false,
     },
   },
-});
+})
 ```
 
 ### `theme.prefix`
@@ -289,16 +289,16 @@ When using Tailwind CSS with a prefix, configure the same prefix in Nuxt UI so c
 export default defineNuxtConfig({
   ui: {
     theme: {
-      prefix: "tw",
+      prefix: 'tw',
     },
   },
-});
+})
 ```
 
 ```css
 /* app/assets/css/main.css */
-@import "tailwindcss" prefix(tw);
-@import "@nuxt/ui";
+@import 'tailwindcss' prefix(tw);
+@import '@nuxt/ui';
 ```
 
 ### Tree-shaking with `experimental.componentDetection`
@@ -313,13 +313,13 @@ export default defineNuxtConfig({
       componentDetection: true,
     },
   },
-});
+})
 ```
 
 For dynamic components (e.g., `<component :is="...">`), pass an array of component names to guarantee they're included:
 
 ```ts
-componentDetection: ["Modal", "Dropdown", "Popover"];
+componentDetection: ['Modal', 'Dropdown', 'Popover']
 ```
 
 ## CSS `@theme` customization
@@ -330,8 +330,8 @@ Customize Tailwind design tokens in `main.css`:
 
 ```css
 @theme {
-  --font-sans: "Public Sans", system-ui, sans-serif;
-  --font-mono: "JetBrains Mono", monospace;
+  --font-sans: 'Public Sans', system-ui, sans-serif;
+  --font-mono: 'JetBrains Mono', monospace;
 }
 ```
 

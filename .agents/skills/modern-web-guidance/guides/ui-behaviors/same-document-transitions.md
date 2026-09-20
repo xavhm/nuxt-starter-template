@@ -17,7 +17,7 @@ For Single-Page Applications (SPAs) or simple state changes, wrap the logic that
 ```javascript
 function navigate(view) {
   // MANDATORY: Wrap the update in startViewTransition
-  document.startViewTransition(() => updateDOM(view));
+  document.startViewTransition(() => updateDOM(view))
 }
 ```
 
@@ -46,8 +46,8 @@ Because there are multiple items on the list view, you can not give the all of t
 
 ```js
 function updateDOM(clickedTransitionName) {
-  const hero = document.getElementById("hero");
-  hero.style.viewTransitionName = clickedTransitionName;
+  const hero = document.getElementById('hero')
+  hero.style.viewTransitionName = clickedTransitionName
 }
 ```
 
@@ -73,46 +73,46 @@ After navigating back to the list view, you must clean up the view transition cl
 ```javascript
 // Function called when a thumbnail is clicked
 function goFromListToDetail(e) {
-  e.currentTarget.classList.add("selected");
-  const hero = document.getElementById("hero");
-  const bgColor = getComputedStyle(e.currentTarget).backgroundColor;
-  hero.style.background = bgColor;
+  e.currentTarget.classList.add('selected')
+  const hero = document.getElementById('hero')
+  const bgColor = getComputedStyle(e.currentTarget).backgroundColor
+  hero.style.background = bgColor
 
   // Trigger the transition, checking for support
   if (!document.startViewTransition) {
-    document.body.classList.add("detail");
+    document.body.classList.add('detail')
     // MANDATORY Accessibility Routing: Route focus to the newly revealed heading to announce context and preserve logical tab flow
-    document.getElementById("detail-heading")?.focus();
-    return; // MANDATORY: End function execution if view transitions are not supported.
+    document.getElementById('detail-heading')?.focus()
+    return // MANDATORY: End function execution if view transitions are not supported.
   }
   const transition = document.startViewTransition(() => {
-    document.body.classList.add("detail");
-  });
+    document.body.classList.add('detail')
+  })
   // MANDATORY Accessibility Routing: Route focus after the view transition resolves
   transition.finished.finally(() => {
-    document.getElementById("detail-heading")?.focus();
-  });
+    document.getElementById('detail-heading')?.focus()
+  })
 }
 
 // Function called when navigating from detail back to list view
 function goFromDetailToList() {
   if (!document.startViewTransition) {
-    document.body.classList.remove("detail");
-    document.getElementById("list-heading")?.focus();
-    return;
+    document.body.classList.remove('detail')
+    document.getElementById('list-heading')?.focus()
+    return
   }
   const transition = document.startViewTransition(() => {
-    document.body.classList.remove("detail");
-  });
+    document.body.classList.remove('detail')
+  })
   // Clean up the list view and route focus
   transition.finished.finally(() => {
     // Route focus back to list view
-    document.getElementById("list-heading")?.focus();
+    document.getElementById('list-heading')?.focus()
     // Remove selected classList to remove view-transition-names
-    document.querySelectorAll(".selected").forEach((element) => {
-      element.classList.remove("selected");
-    });
-  });
+    document.querySelectorAll('.selected').forEach((element) => {
+      element.classList.remove('selected')
+    })
+  })
 }
 ```
 
@@ -172,9 +172,9 @@ The View Transitions API is designed for progressive enhancement. Browsers that 
 function navigate() {
   if (!document.startViewTransition) {
     // Fallback: Just update the DOM
-    updateDOM();
+    updateDOM()
   } else {
-    document.startViewTransition(() => updateDOM());
+    document.startViewTransition(() => updateDOM())
   }
 }
 ```

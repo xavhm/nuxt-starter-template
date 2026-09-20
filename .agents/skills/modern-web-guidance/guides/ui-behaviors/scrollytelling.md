@@ -190,37 +190,37 @@ Note that not every effect can be recreated using the fallbacks approach.
 For this use-case specifically, the following script applies the fallback for browsers that do not support scroll-driven animations. It uses an `IntersectionObserver` to track the visibility of each `#tracked section` element and updates the `transform` property of the corresponding `#animated section` accordingly.
 
 ```js
-const animatedSections = document.querySelectorAll("#animated section");
+const animatedSections = document.querySelectorAll('#animated section')
 
 const observer = new IntersectionObserver(
   (entries) => {
     entries.forEach((entry) => {
-      const sectionIndex = Array.from(document.querySelectorAll("#tracked section")).indexOf(
+      const sectionIndex = Array.from(document.querySelectorAll('#tracked section')).indexOf(
         entry.target,
-      );
+      )
       if (sectionIndex !== -1) {
-        const animatedSection = animatedSections[sectionIndex];
-        const ratio = entry.intersectionRatio;
+        const animatedSection = animatedSections[sectionIndex]
+        const ratio = entry.intersectionRatio
 
         // Animate-in
-        animatedSection.style.opacity = ratio;
-        animatedSection.style.transform = `scale(${0.5 + ratio * 0.5}) rotateY(${-180 + ratio * 180}deg)`;
+        animatedSection.style.opacity = ratio
+        animatedSection.style.transform = `scale(${0.5 + ratio * 0.5}) rotateY(${-180 + ratio * 180}deg)`
 
         // Animate-out
         if (ratio < 0.5) {
-          animatedSection.style.translate = `${(0.5 - ratio) * 2 * 100}% 0`;
+          animatedSection.style.translate = `${(0.5 - ratio) * 2 * 100}% 0`
         } else {
-          animatedSection.style.translate = "0 0";
+          animatedSection.style.translate = '0 0'
         }
       }
-    });
+    })
   },
   { threshold: Array.from({ length: 101 }, (_, i) => i / 100) },
-);
+)
 
-document.querySelectorAll("#tracked section").forEach((section) => {
-  observer.observe(section);
-});
+document.querySelectorAll('#tracked section').forEach((section) => {
+  observer.observe(section)
+})
 ```
 
 And the accompanying CSS:

@@ -69,16 +69,16 @@ If the page you are navigating to will always have the same transition type, reg
 You can also conditionally specify transition types inside of an event listener for `pagereveal`.
 
 ```js
-window.addEventListener("pagereveal", async (e) => {
+window.addEventListener('pagereveal', async (e) => {
   if (e.viewTransition && window.navigation?.activation) {
     // Use application-specific logic to compute a transition type
     const transitionType = yourTransitionTypeLogic(
       navigation.activation.from,
       navigation.activation.entry,
-    );
-    e.viewTransition.types.add(transitionType);
+    )
+    e.viewTransition.types.add(transitionType)
   }
-});
+})
 ```
 
 Then, use the `:active-view-transition-type()` pseudo selector to apply the different animations for each type.
@@ -118,7 +118,7 @@ If a browser does not support view transitions, or cross-document view transitio
 To check for support in JavaScript:
 
 ```javascript
-if ("onpagereveal" in window) {
+if ('onpagereveal' in window) {
   // Browser supports cross-document view transitions
 }
 ```

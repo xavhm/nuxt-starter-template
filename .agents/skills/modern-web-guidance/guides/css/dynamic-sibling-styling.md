@@ -60,13 +60,13 @@ If `sibling-index()` and `sibling-count()` are not supported, provide a fallback
 
 ```js
 /* MANDATORY: Check for native support before applying fallback */
-if (!CSS.supports("top: calc(sibling-index() * 1px)")) {
-  const items = document.querySelectorAll(".item");
+if (!CSS.supports('top: calc(sibling-index() * 1px)')) {
+  const items = document.querySelectorAll('.item')
   items.forEach((item, index) => {
     /* MANDATORY: Injected index must be 1-based to match native function */
-    item.style.setProperty("--sibling-index", index + 1);
-    item.style.setProperty("--sibling-count", items.length);
-  });
+    item.style.setProperty('--sibling-index', index + 1)
+    item.style.setProperty('--sibling-count', items.length)
+  })
 }
 ```
 

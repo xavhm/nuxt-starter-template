@@ -68,8 +68,8 @@ Install the polyfill via npm (`npm install invokers-polyfill`). This approach is
 ```javascript
 // MANDATORY: Feature detect 'commandForElement' on HTMLButtonElement.prototype.
 // Conditionally load the invokers-polyfill only in browsers lacking native support.
-if (!("commandForElement" in HTMLButtonElement.prototype)) {
-  import("invokers-polyfill");
+if (!('commandForElement' in HTMLButtonElement.prototype)) {
+  import('invokers-polyfill')
 }
 ```
 
@@ -80,8 +80,8 @@ For projects without a bundler, dynamically import the polyfill directly from a 
 <script type="module">
   // MANDATORY: Feature detect 'commandForElement' on HTMLButtonElement.prototype.
   // Conditionally load the invokers-polyfill from a CDN only in browsers lacking native support.
-  if (!("commandForElement" in HTMLButtonElement.prototype)) {
-    import("https://esm.run/invokers-polyfill");
+  if (!('commandForElement' in HTMLButtonElement.prototype)) {
+    import('https://esm.run/invokers-polyfill')
   }
 </script>
 ```
@@ -104,32 +104,32 @@ For the best performance, you should only load the polyfill if the browser doesn
 
 ```javascript
 // 1. Conditionally load the polyfill
-const hasNativeSupport = "commandForElement" in HTMLButtonElement.prototype;
+const hasNativeSupport = 'commandForElement' in HTMLButtonElement.prototype
 
 if (!hasNativeSupport) {
   // Wrap in an async IIFE to avoid top-level await issues in older browsers
-  (async () => {
+  ;(async () => {
     try {
-      await import("https://esm.run/invokers-polyfill");
+      await import('https://esm.run/invokers-polyfill')
     } catch (err) {
-      console.error("Error loading fallback:", err);
+      console.error('Error loading fallback:', err)
     }
-  })();
+  })()
 }
 
 // 2. Manually manage ARIA states in your listener
-document.getElementById("action-target").addEventListener("command", (event) => {
-  const command = event.command;
-  const target = event.target;
-  const source = event.source; // The button that triggered the command
+document.getElementById('action-target').addEventListener('command', (event) => {
+  const command = event.command
+  const target = event.target
+  const source = event.source // The button that triggered the command
 
-  if (command === "--spin") {
-    const isSpun = target.classList.toggle("is-spun");
+  if (command === '--spin') {
+    const isSpun = target.classList.toggle('is-spun')
 
     // Polyfill tip: Manually update ARIA to match the new state
-    source?.setAttribute("aria-pressed", isSpun);
+    source?.setAttribute('aria-pressed', isSpun)
   }
-});
+})
 ```
 
 ### Manual fallback (Traditional pattern)
@@ -139,50 +139,50 @@ If you prefer not to use a polyfill, you can use a combination of **event delega
 ```javascript
 // 1. **Optional:** Define a registry of requested actions for cleaner logic
 const commandRegistry = {
-  "--spin": (target) => target.classList.toggle("is-spun"),
-  "--grow": (target) => target.classList.toggle("is-grown"),
-  "--reset": (target) => target.classList.remove("is-spun", "is-grown"),
-};
+  '--spin': (target) => target.classList.toggle('is-spun'),
+  '--grow': (target) => target.classList.toggle('is-grown'),
+  '--reset': (target) => target.classList.remove('is-spun', 'is-grown'),
+}
 
 // 2. If CommandEvent doesn't exist, we assume no native support and provide the fallback
 if (!globalThis.CommandEvent) {
   globalThis.CommandEvent = class CommandEvent extends Event {
     constructor(type, { source, command, ...options } = {}) {
-      super(type, options);
-      this.source = source;
-      this.command = command;
+      super(type, options)
+      this.source = source
+      this.command = command
     }
-  };
+  }
 }
 
 // 3. The fallback: Dispatch events manually if native support is missing
-document.addEventListener("click", (event) => {
-  const button = event.composedPath().find((el) => el.matches?.("button[commandfor]"));
-  if (!button) return;
+document.addEventListener('click', (event) => {
+  const button = event.composedPath().find((el) => el.matches?.('button[commandfor]'))
+  if (!button) return
 
-  const target = document.getElementById(button.getAttribute("commandfor"));
-  const command = button.getAttribute("command");
+  const target = document.getElementById(button.getAttribute('commandfor'))
+  const command = button.getAttribute('command')
 
   if (target && command) {
     target.dispatchEvent(
-      new CommandEvent("command", {
+      new CommandEvent('command', {
         command,
         source: button,
       }),
-    );
+    )
   }
-});
+})
 
 // 4. **Mandatory:** Register the unified listener directly on the target element
-document.getElementById("action-target").addEventListener("command", (event) => {
-  const command = event.command;
-  const target = event.target;
-  const action = commandRegistry[command];
+document.getElementById('action-target').addEventListener('command', (event) => {
+  const command = event.command
+  const target = event.target
+  const action = commandRegistry[command]
 
   if (action) {
-    action(target);
+    action(target)
   }
-});
+})
 ```
 
 ### Fallbacks & browser support for Popover
@@ -198,8 +198,8 @@ With a bundler or import map:
 
 ```js
 // MANDATORY: Feature detect 'popover' on HTMLElement.prototype.
-if (!("popover" in HTMLElement.prototype)) {
-  import("@oddbird/popover-polyfill");
+if (!('popover' in HTMLElement.prototype)) {
+  import('@oddbird/popover-polyfill')
 }
 ```
 
@@ -207,8 +207,8 @@ Without a bundler, import from a CDN inside a `<script type="module">`:
 
 ```html
 <script type="module">
-  if (!("popover" in HTMLElement.prototype)) {
-    import("https://unpkg.com/@oddbird/popover-polyfill@latest/dist/popover.min.js");
+  if (!('popover' in HTMLElement.prototype)) {
+    import('https://unpkg.com/@oddbird/popover-polyfill@latest/dist/popover.min.js')
   }
 </script>
 ```

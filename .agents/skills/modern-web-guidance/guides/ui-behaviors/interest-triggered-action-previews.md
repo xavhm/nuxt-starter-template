@@ -16,15 +16,15 @@ An interest relationship is created by setting the `interestfor` attribute on a 
 For the sake of this use case, we can leverage the `interest` and `loseinterest` events to preview various effects for an interest target. Both of these events are `InterestEvent`s which has a `source` property which is the source of the interest (i.e. the element with the `interestfor` attribute).
 
 ```javascript
-interestingElement.addEventListener("interest", (event) => {
+interestingElement.addEventListener('interest', (event) => {
   // Apply the preview based on `event.source`
-  event.target.dataset.preview = event.source.dataset.effect;
-});
+  event.target.dataset.preview = event.source.dataset.effect
+})
 
-interestingElement.addEventListener("loseinterest", (event) => {
+interestingElement.addEventListener('loseinterest', (event) => {
   // Unapply the preview
-  delete event.target.dataset.preview;
-});
+  delete event.target.dataset.preview
+})
 ```
 
 > [!NOTE]
@@ -59,9 +59,9 @@ Interest invokers must be conditionally polyfilled using the `interestfor` polyf
 
 ```html
 <script type="module">
-  if (!HTMLButtonElement.prototype.hasOwnProperty("interestForElement")) {
+  if (!HTMLButtonElement.prototype.hasOwnProperty('interestForElement')) {
     // CDN link only used for example, prefer bundling.
-    await import("https://unpkg.com/interestfor@latest");
+    await import('https://unpkg.com/interestfor@latest')
   }
 </script>
 ```

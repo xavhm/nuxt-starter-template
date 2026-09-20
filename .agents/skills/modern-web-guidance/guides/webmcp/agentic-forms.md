@@ -30,30 +30,30 @@ The Declarative API transforms standard HTML `<form>` elements into WebMCP tools
 When an agent submits the form, the `SubmitEvent` includes `agentInvoked` (boolean) and `respondWith(promise)`.
 
 ```javascript
-document.querySelector("form").addEventListener("submit", (event) => {
-  event.preventDefault();
+document.querySelector('form').addEventListener('submit', (event) => {
+  event.preventDefault()
 
   // Validate the form
-  const formValidationErrors = myFormIsValid();
+  const formValidationErrors = myFormIsValid()
 
   if (formValidationErrors.length > 0) {
     if (event.agentInvoked) {
       const errorString =
-        "Validation failed: " +
-        formValidationErrors.map((err) => `${err.field} (${err.message})`).join(", ");
+        'Validation failed: ' +
+        formValidationErrors.map((err) => `${err.field} (${err.message})`).join(', ')
 
-      event.respondWith(Promise.resolve(errorString));
+      event.respondWith(Promise.resolve(errorString))
     }
-    return;
+    return
   }
 
-  const resultPromise = performAsyncSearch(new FormData(event.target));
+  const resultPromise = performAsyncSearch(new FormData(event.target))
 
   // Return the result directly to the agent without navigation
   if (event.agentInvoked) {
-    event.respondWith(resultPromise);
+    event.respondWith(resultPromise)
   }
-});
+})
 ```
 
 ## Lifecycle Events
@@ -61,13 +61,13 @@ document.querySelector("form").addEventListener("submit", (event) => {
 The window emits events when agents start or stop interacting with a tool:
 
 ```javascript
-window.addEventListener("toolactivated", ({ toolName }) => {
-  console.log(`Tool "${toolName}" was activated by the agent.`);
-});
+window.addEventListener('toolactivated', ({ toolName }) => {
+  console.log(`Tool "${toolName}" was activated by the agent.`)
+})
 
-window.addEventListener("toolcancel", ({ toolName }) => {
-  console.log(`Tool "${toolName}" interaction was cancelled.`);
-});
+window.addEventListener('toolcancel', ({ toolName }) => {
+  console.log(`Tool "${toolName}" interaction was cancelled.`)
+})
 ```
 
 ## Visual Feedback (CSS)

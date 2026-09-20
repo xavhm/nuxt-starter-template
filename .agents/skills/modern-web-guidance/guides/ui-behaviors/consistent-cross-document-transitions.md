@@ -53,7 +53,7 @@ If a non-blocking script in the `<head>` must run before the transition animates
   <script type="module" blocking="render">
     // Example: apply a stored theme before the page renders,
     // so the transition snapshot reflects the correct theme.
-    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+    document.documentElement.dataset.theme = localStorage.getItem('theme') || 'light'
   </script>
 </head>
 ```
@@ -164,30 +164,30 @@ If `view-transition-name` values are assigned statically in CSS, or if you are o
 
 ```javascript
 // transition-setup.js
-window.addEventListener("pagereveal", async (event) => {
-  if (!event.viewTransition) return;
+window.addEventListener('pagereveal', async (event) => {
+  if (!event.viewTransition) return
 
-  const from = navigation.activation?.from;
-  if (!from) return;
+  const from = navigation.activation?.from
+  if (!from) return
 
-  const fromUrl = new URL(from.url);
+  const fromUrl = new URL(from.url)
 
   // DO: Assign view-transition-name based on navigation context.
   // This enables a morph animation from the product card on the
   // list page to the heading on the detail page.
-  if (fromUrl.pathname === "/products/") {
-    const heading = document.querySelector("main h1");
+  if (fromUrl.pathname === '/products/') {
+    const heading = document.querySelector('main h1')
     if (heading) {
-      heading.style.viewTransitionName = "product-title";
+      heading.style.viewTransitionName = 'product-title'
     }
 
     // MANDATORY: Remove the temporary name after the transition
     // finishes. Stale names interfere with subsequent navigations
     // and prevent the page from entering the bfcache.
-    await event.viewTransition.finished;
-    heading.style.viewTransitionName = "";
+    await event.viewTransition.finished
+    heading.style.viewTransitionName = ''
   }
-});
+})
 ```
 
 ## Best Practices

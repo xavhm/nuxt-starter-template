@@ -348,7 +348,7 @@ For most styling purposes (e.g. colors, borders, backgrounds, typography, etc) t
 
 ```css
 .hero {
-  background-image: url("texture.png"), linear-gradient(to bottom, #fff, #eee);
+  background-image: url('texture.png'), linear-gradient(to bottom, #fff, #eee);
   background-blend-mode: soft-light;
 }
 ```
@@ -503,7 +503,7 @@ Either apply reduced motion versions on a case by case basis, or use a custom pr
 
 ```css
 @property --animation-reduced {
-  syntax: "*";
+  syntax: '*';
   inherits: false;
   initial-value: none;
 }
@@ -544,7 +544,7 @@ CSS:
 
 ```css
 button.save::before {
-  content: url(cloud.svg) / "Save";
+  content: url(cloud.svg) / 'Save';
 }
 ```
 
