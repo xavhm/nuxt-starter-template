@@ -17,6 +17,7 @@
     "@nuxt/hints": "^1.1.4",
     "@nuxt/ui": "^4.11.1",
     "@nuxtjs/seo": "^5.3.16",
+    "@takumi-rs/core": "^2.14.0",
     "better-sqlite3": "^13.0.3",
     "nuxt": "^4.5.2",
     "nuxt-security": "2.6.0",
@@ -26,6 +27,7 @@
     "@nuxt/eslint": "^1.17.0",
     "eslint": "^10.10.0",
     "eslint-plugin-better-tailwindcss": "^4.7.0",
+    "node-gyp": "^13.0.2",
     "typescript": "^6.0.3",
     "vue-tsc": "^3.3.11"
   },
