@@ -7,9 +7,14 @@
     "dev": "nuxt dev",
     "preview": "nuxt preview",
     "postinstall": "nuxt prepare",
-    "lint": "eslint .",
+    "lint": "vp lint",
+    "lint:fix": "vp lint --fix",
+    "check": "vp check",
+    "check:fix": "vp check --fix",
     "typecheck": "nuxt typecheck",
-    "prepare": "vp config"
+    "prepare": "vp config",
+    "test": "vp test",
+    "test:watch": "vp test watch"
   },
   "dependencies": {
     "@iconify-json/lucide": "^1.2.131",
@@ -25,6 +30,9 @@
     "tailwindcss": "^4.3.3"
   },
   "devDependencies": {
+    "@nuxt/test-utils": "^4.3.2",
+    "@vue/test-utils": "^2.5.1",
+    "happy-dom": "^20.14.5",
     "node-gyp": "^13.0.2",
     "typescript": "^6.0.3",
     "vite": "catalog:",

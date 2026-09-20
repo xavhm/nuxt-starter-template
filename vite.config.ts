@@ -1,8 +1,20 @@
 import { defineConfig } from "vite-plus";
+import { defineVitestProject } from "@nuxt/test-utils/config";
 
 export default defineConfig({
+  test: {
+    projects: [
+      await defineVitestProject({
+        test: {
+          name: "nuxt",
+          include: ["./app/tests/**/*.test.ts"],
+          environment: "nuxt",
+        },
+      }),
+    ],
+  },
   staged: {
-    "*": "vp check --fix",
+    "*.{js,ts,tsx,vue}": "vp check --fix",
   },
   fmt: {},
   lint: {
