@@ -108,6 +108,11 @@ vp run build
 vp run preview
 ```
 
+Project deploy using
+- pre-commit hooks running`vp check` and `vp check --fix`.
+- commit-lint using @commitlint/config-conventional for commit conventional messages.
+- release-it to push to origin with automatic semver.
+
 The generated Nuxt output is written to `.output/`. Refer to the [Nuxt deployment guide](https://nuxt.com/docs/getting-started/deployment) for provider-specific instructions.
 
 ## License
