@@ -3,7 +3,7 @@
     "requireCleanWorkingDir": true,
     "requireUpstream": true,
     "commit": true,
-    "commitMessage": "chore: release with tag v${version}",
+    "commitMessage": "chore(): release with tag v${version}",
     "tag": true,
     "tagName": "v${version}",
     "push": true
