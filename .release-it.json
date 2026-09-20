@@ -19,10 +19,31 @@
 
   "plugins": {
     "@release-it/conventional-changelog": {
+      "infile": "CHANGELOG.md",
       "preset": {
-        "name": "conventionalcommits"
-      },
-      "infile": "CHANGELOG.md"
+        "name": "conventionalcommits",
+        "types": [
+          {
+            "type": "feat",
+            "section": "Features",
+            "effect": "bump"
+          },
+          {
+            "type": "fix",
+            "section": "Bug Fixes",
+            "effect": "bump"
+          },
+          {
+            "type": "docs",
+            "section": "Documentation",
+            "effect": "bump"
+          },
+          {
+            "type": "chore",
+            "effect": "hidden"
+          }
+        ]
+      }
     }
   }
 }
