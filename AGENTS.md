@@ -24,8 +24,4 @@ release. Add a tool name to select part of the graph. For example, run
 - [ ] Check if there are `vite.config.ts` tasks or `package.json` scripts necessary for validation, run via `vp run <script>`.
 - [ ] If setup, runtime, or package-manager behavior looks wrong, run `vp env doctor` and include its output when asking for help.
 
-## Documentation
-
-- 'Nuxt Content' module documentation is available at [https://content.nuxt.com/llms.txt](https://content.nuxt.com/llms.txt)
-- 'Nuxt Security' module documentation is available at [https://nuxt-security.vercel.app/getting-started/configuration](https://nuxt-security.vercel.app/getting-started/configuration)
 <!--VITE PLUS END-->
