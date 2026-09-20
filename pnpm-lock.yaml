@@ -178,12 +178,6 @@ importers:
 
   .:
     dependencies:
-      '@commitlint/cli':
-        specifier: ^21.2.3
-        version: 21.2.3(@types/node@26.5.1)(conventional-commits-filter@6.0.1)(conventional-commits-parser@7.1.2)(typescript@6.0.3)
-      '@commitlint/config-conventional':
-        specifier: ^21.2.3
-        version: 21.2.3
       '@iconify-json/lucide':
         specifier: ^1.2.131
         version: 1.2.131
@@ -202,9 +196,6 @@ importers:
       '@nuxtjs/seo':
         specifier: ^5.3.16
         version: 5.3.16(61864915211e52b6b89f19ded0055bf7)
-      '@release-it/conventional-changelog':
-        specifier: ^12.0.2
-        version: 12.0.2(conventional-commits-filter@6.0.1)(conventional-commits-parser@7.1.2)(release-it@21.1.0(@types/node@26.5.1)(magicast@0.5.4)(supports-color@10.2.2))
       '@takumi-rs/core':
         specifier: ^2.14.0
         version: 2.14.0(csstype@3.2.3)
@@ -217,16 +208,22 @@ importers:
       nuxt-security:
         specifier: 2.6.0
         version: 2.6.0(magic-string@1.3.1)(magicast@0.5.4)(oxc-parser@0.149.0)(rolldown@1.2.1)(rollup@4.60.4)(supports-color@10.2.2)(unplugin@3.3.0(@voidzero-dev/vite-plus-core@0.3.3(@types/node@26.5.1)(esbuild@0.28.0)(jiti@2.7.0)(terser@5.47.1)(typescript@6.0.3)(yaml@2.9.0))(esbuild@0.28.0)(rolldown@1.2.1)(rollup@4.60.4))
-      release-it:
-        specifier: ^21.1.0
-        version: 21.1.0(@types/node@26.5.1)(magicast@0.5.4)(supports-color@10.2.2)
       tailwindcss:
         specifier: ^4.3.3
         version: 4.3.3
     devDependencies:
+      '@commitlint/cli':
+        specifier: ^21.2.3
+        version: 21.2.3(@types/node@26.5.1)(conventional-commits-filter@6.0.1)(conventional-commits-parser@7.1.2)(typescript@6.0.3)
+      '@commitlint/config-conventional':
+        specifier: ^21.2.3
+        version: 21.2.3
       '@nuxt/test-utils':
         specifier: ^4.3.2
         version: 4.3.2(@voidzero-dev/vite-plus-core@0.3.3(@types/node@26.5.1)(esbuild@0.28.0)(jiti@2.7.0)(terser@5.47.1)(typescript@6.0.3)(yaml@2.9.0))(@vue/test-utils@2.5.1(@vue/compiler-dom@3.5.43)(@vue/server-renderer@3.5.43)(vue@3.5.43(typescript@6.0.3)))(esbuild@0.28.0)(happy-dom@20.14.5)(magicast@0.5.4)(rolldown@1.2.1)(rollup@4.60.4)(typescript@6.0.3)(vitest@4.1.11)
+      '@release-it/conventional-changelog':
+        specifier: ^12.0.2
+        version: 12.0.2(conventional-commits-filter@6.0.1)(conventional-commits-parser@7.1.2)(release-it@21.1.0(@types/node@26.5.1)(magicast@0.5.4)(supports-color@10.2.2))
       '@vue/test-utils':
         specifier: ^2.5.1
         version: 2.5.1(@vue/compiler-dom@3.5.43)(@vue/server-renderer@3.5.43)(vue@3.5.43(typescript@6.0.3))
@@ -236,6 +233,9 @@ importers:
       node-gyp:
         specifier: ^13.0.2
         version: 13.0.2
+      release-it:
+        specifier: ^21.1.0
+        version: 21.1.0(@types/node@26.5.1)(magicast@0.5.4)(supports-color@10.2.2)
       typescript:
         specifier: ^6.0.3
         version: 6.0.3
