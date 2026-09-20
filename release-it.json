@@ -1,0 +1,28 @@
+{
+  "git": {
+    "requireCleanWorkingDir": true,
+    "requireUpstream": true,
+    "commit": true,
+    "commitMessage": "build(release): v${version}",
+    "tag": true,
+    "tagName": "v${version}",
+    "push": true
+  },
+
+  "npm": {
+    "publish": false
+  },
+
+  "github": {
+    "release": false
+  },
+
+  "plugins": {
+    "@release-it/conventional-changelog": {
+      "preset": {
+        "name": "conventionalcommits"
+      },
+      "infile": "CHANGELOG.md"
+    }
+  }
+}
