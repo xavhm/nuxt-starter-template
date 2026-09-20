@@ -12,6 +12,10 @@ export default defineNuxtConfig({
     enabled: true,
   },
 
+  ogImage: {
+    zeroRuntime: true,
+  },
+
   css: ['~/assets/css/main.css'],
 
   content: {},
