@@ -22,13 +22,14 @@ export default defineConfig({
     sortPackageJson: true,
   },
   lint: {
+    plugins: ['vue', 'eslint', 'typescript', 'oxc', 'node', 'vitest'],
     jsPlugins: [{ name: 'vite-plus', specifier: 'vite-plus/oxlint-plugin' }],
-    ignorePatterns: ['dist/**', '.agents/**', '.codex/**', '.data/**', '.github/**'],
     rules: {
       'vite-plus/prefer-vite-plus-imports': 'error',
       'no-debugger': 'error',
       'no-console': ['warn', { allow: ['warn', 'error'] }],
     },
     options: { typeAware: true, typeCheck: true },
+    ignorePatterns: ['dist/**', '.agents/**', '.codex/**', '.data/**', '.github/**'],
   },
 })
