@@ -34,13 +34,8 @@
             "effect": "bump"
           },
           {
-            "type": "docs",
-            "section": "Documentation",
-            "effect": "bump"
-          },
-          {
             "type": "chore",
-            "section": "Project Maintenance",
+            "section": "Maintenance",
             "effect": "bump"
           }
         ]
