@@ -17,6 +17,10 @@
     "release": false
   },
 
+  "hooks": {
+    "after:@release-it/conventional-changelog:beforeRelease": "pnpm exec vp fmt CHANGELOG.md"
+  },
+
   "plugins": {
     "@release-it/conventional-changelog": {
       "infile": "CHANGELOG.md",
