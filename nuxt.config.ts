@@ -1,12 +1,6 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
-  modules: [
-    '@nuxt/ui',
-    '@nuxt/content', // use better-sqlite3 as dependancy
-    '@nuxt/hints',
-    '@nuxtjs/seo',
-    'nuxt-security',
-  ],
+  modules: ['@nuxt/ui', '@nuxt/hints', '@nuxtjs/seo', 'nuxt-security'],
 
   devtools: {
     enabled: true,
@@ -17,8 +11,6 @@ export default defineNuxtConfig({
   },
 
   css: ['~/assets/css/main.css'],
-
-  content: {},
 
   routeRules: {
     '/': { prerender: true },
