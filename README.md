@@ -111,7 +111,7 @@ vp run preview
 
 The Vite+ pre-commit hook runs `vp staged`, which applies `vp check --fix` to staged JavaScript, TypeScript, and Vue files. The commit-message hook runs Commitlint. Run `vp run check`, `vp run typecheck`, and `vp run test` before deployment.
 
-Use `vp run release` to publish a version through release-it.
+Use `vp run release` to publish a version through release-it. The release hook formats the generated changelog and runs the full `check` script before creating the release commit.
 
 The generated Nuxt output is written to `.output/`. Refer to the [Nuxt deployment guide](https://nuxt.com/docs/getting-started/deployment) for provider-specific instructions.
 

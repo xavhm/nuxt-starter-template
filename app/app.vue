@@ -25,8 +25,8 @@ useSeoMeta({
   <UApp>
     <UHeader>
       <template #left>
-        <NuxtLink to="/" class="focus-visible:outline-3 outline-primary/25 rounded-md p-1 -ms-1">
-          <AppLogo class="w-auto h-6 shrink-0" />
+        <NuxtLink to="/" class="outline-primary/25 -ms-1 rounded-md p-1 focus-visible:outline-3">
+          <AppLogo class="h-6 w-auto shrink-0" />
         </NuxtLink>
 
         <TemplateMenu />
@@ -54,7 +54,7 @@ useSeoMeta({
 
     <UFooter>
       <template #left>
-        <p class="text-sm text-muted">Built with Nuxt UI • © {{ new Date().getFullYear() }}</p>
+        <p class="text-muted text-sm">Built with Nuxt UI • © {{ new Date().getFullYear() }}</p>
       </template>
 
       <template #right>

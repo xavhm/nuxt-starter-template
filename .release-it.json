@@ -18,7 +18,10 @@
   },
 
   "hooks": {
-    "after:@release-it/conventional-changelog:beforeRelease": "pnpm exec vp fmt CHANGELOG.md"
+    "after:@release-it/conventional-changelog:beforeRelease": [
+      "pnpm exec vp fmt CHANGELOG.md",
+      "pnpm run check"
+    ]
   },
 
   "plugins": {
