@@ -1,5 +1,5 @@
-import { defineConfig } from 'vite-plus'
 import { defineVitestProject } from '@nuxt/test-utils/config'
+import { defineConfig } from 'vite-plus'
 
 export default defineConfig({
   test: {
@@ -20,6 +20,8 @@ export default defineConfig({
     singleQuote: true,
     semi: false,
     sortPackageJson: true,
+    sortImports: true,
+    sortTailwindcss: true,
   },
   lint: {
     plugins: ['vue', 'eslint', 'typescript', 'oxc', 'node', 'vitest'],
@@ -27,7 +29,7 @@ export default defineConfig({
     rules: {
       'vite-plus/prefer-vite-plus-imports': 'error',
       'no-debugger': 'error',
-      'no-console': ['warn', { allow: ['warn', 'error'] }],
+      'no-console': 'error',
     },
     options: { typeAware: true, typeCheck: true },
     ignorePatterns: ['dist/**', '.agents/**', '.codex/**', '.data/**', '.github/**'],
