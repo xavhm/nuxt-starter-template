@@ -1,5 +1,13 @@
 # Changelog
 
+## [1.0.3](https://github.com/xavhm/nuxt-starter-template/compare/v1.0.2...v1.0.3) (2026-09-24)
+
+### Maintenance
+
+* delete @nuxt/content and better-sqlite3 ([44af435](https://github.com/xavhm/nuxt-starter-template/commit/44af4357afa361096a4f32f8aff8d5026f7633cb))
+* finalized viteplus configuration ([7d03a32](https://github.com/xavhm/nuxt-starter-template/commit/7d03a32ea7f2fc11dadf932a26d73231c8daa7e8))
+* update release-it.json ([f31deb8](https://github.com/xavhm/nuxt-starter-template/commit/f31deb8a3afa6ca77257404008a22e8d14ede717))
+
 ## [1.0.2](https://github.com/xavhm/nuxt-starter-template/compare/v1.0.1...v1.0.2) (2026-09-20)
 
 ### Project Maintenance
