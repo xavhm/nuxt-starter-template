@@ -15,7 +15,6 @@ The repository provides a consistent Vite+ workflow, project-level agent instruc
 | Module                                             | Purpose                                                                      |
 | -------------------------------------------------- | ---------------------------------------------------------------------------- |
 | [Nuxt UI](https://ui.nuxt.com/)                    | Accessible Vue components and Tailwind CSS theming                           |
-| [Nuxt Content](https://content.nuxt.com/)          | File-based content management for Markdown, YAML, JSON, and CSV              |
 | [Nuxt SEO](https://nuxtseo.com/)                   | SEO utilities, sitemaps, robots configuration, and structured data           |
 | [Nuxt Security](https://nuxt-security.vercel.app/) | Security headers, middleware, rate limiting, and request protection          |
 | [Nuxt Hints](https://nuxt.com/modules/hints)       | Development-time feedback for performance, accessibility, and best practices |
