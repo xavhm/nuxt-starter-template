@@ -84,7 +84,9 @@ vp run dev
 | `vp run dev`       | Start the Nuxt development server with hot module replacement         |
 | `vp run build`     | Create a production build                                             |
 | `vp run preview`   | Preview the production build locally                                  |
-| `vp run lint`      | Run the project ESLint configuration                                  |
+| `vp run check`     | Run Oxfmt, Oxlint, and Vite+ type checks                              |
+| `vp run format`    | Format files with Oxfmt                                               |
+| `vp run test`      | Run the Vitest suite                                                  |
 | `vp run typecheck` | Run Nuxt's TypeScript checks                                          |
 | `vp toolchain`     | Display the active Vite+ toolchain and versions                       |
 | `vp help`          | List all Vite+ commands                                               |
@@ -108,10 +110,9 @@ vp run build
 vp run preview
 ```
 
-Project deploy using
-- pre-commit hooks running`vp check` and `vp check --fix`.
-- commit-lint using @commitlint/config-conventional for commit conventional messages.
-- release-it to push to origin with automatic semver.
+The Vite+ pre-commit hook runs `vp staged`, which applies `vp check --fix` to staged JavaScript, TypeScript, and Vue files. The commit-message hook runs Commitlint. Run `vp run check`, `vp run typecheck`, and `vp run test` before deployment.
+
+Use `vp run release` to publish a version through release-it.
 
 The generated Nuxt output is written to `.output/`. Refer to the [Nuxt deployment guide](https://nuxt.com/docs/getting-started/deployment) for provider-specific instructions.
 
