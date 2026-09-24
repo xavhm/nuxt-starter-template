@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.0.4](https://github.com/xavhm/nuxt-starter-template/compare/v1.0.3...v1.0.4) (2026-09-24)
+
+### Maintenance
+
+- setting up oxc plugins ([705f55e](https://github.com/xavhm/nuxt-starter-template/commit/705f55ee2117e353f3e10b32f3fc6ae5af294f05))
+- setup linting plugins ([ae4668b](https://github.com/xavhm/nuxt-starter-template/commit/ae4668b338a73604554cd022905be37aabeb7777))
+
 ## [1.0.3](https://github.com/xavhm/nuxt-starter-template/compare/v1.0.2...v1.0.3) (2026-09-24)
 
 ### Maintenance
